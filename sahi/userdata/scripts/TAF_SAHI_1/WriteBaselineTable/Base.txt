@@ -1,0 +1,25 @@
+We believe strongly in open-source technology and the power of the open-source
+
+community to develop applications with shared benefits. We specialize in an open-source
+
+technology stack: Linux, Apache, Postgres, Mysql, PHP, and Ruby on Rails. We believe
+
+that many of the modern web application development frameworks have the dual benefit
+
+of hastening application development and consequently improving your ROI-- but also
+
+of saving you money down the stretch by building in design patterns, such as MVC, that
+
+encourage DRY development and decoupled encapsulation. Therefore, we recommend
+
+Ruby on Rails as our first choice when developing new web applications for its speed
+
+of delivery, great unit testing framework, deployment tools, ORM layer, and clean MVC
+
+implementation. We have experience with a number of other web application frameworks,
+
+such as CakePHP, Django, and Zend. Mobile apps are no longer an optional product
+
+strategy for our customers. From mobile-optimized web sites to native iOS and Android
+
+applications, we extend our customers' reach to mobile devices.

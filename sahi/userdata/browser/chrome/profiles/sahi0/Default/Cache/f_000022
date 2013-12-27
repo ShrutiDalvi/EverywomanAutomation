@@ -1,0 +1,785 @@
+// JavaScript Document
+/**
+ * @function name:  get_data_updater
+ * @description: This function will update the id and get the render the element.
+ *
+ * @param      :
+ * @return     : --
+ * @author     :
+ * @since      : 24-06-2011
+ * @edit by    : --
+ * @edit date  : --
+ */
+function data_updater(controller, action, div_id, keyword, div_id_value,
+		formname) {
+
+	if (div_id_value != null) {
+		var value = $j(div_id_value).val();
+		value = keyword + '=' + value;
+	} else if (formname != null) {
+		var value = $j("#" + formname).serialize();
+	} else {
+		var value = null;
+	}
+
+	var url = '/' + controller + '/' + action;
+	$j.ajax({
+		url : url,
+		type : "POST",
+		data : value,
+		success : function(response) {
+			Ekarda.Tools.updateElements(response);
+			if ($j("#sform").find(".error-message:visible").length == 0)
+				$j("#sform").find("input:text, select").val("");
+//                $j("#accept_terms_sign").prop("checked", true);
+		}
+	});
+}
+function data_updater_new(controller, action, div_id, keyword, div_id_value,
+		formname) {
+	if (div_id_value != null) {
+		var value = $j(div_id_value).val();
+		value = keyword + '=' + value;
+	} else if (formname != null) {
+		var value = $j("#" + formname).serialize();
+	} else {
+		var value = null;
+	}
+	var url = '/' + controller + '/' + action;
+	$j.ajax({
+		url : url,
+		type : "POST",
+		data : value,
+		success : function(response) {
+			Ekarda.Tools.updateElements(response);
+
+		}
+	});
+}
+// added by Deepesh singh
+function hide_flashmessages(id, time) {
+	// alert(id+time) ;
+	$j("#" + id).fadeOut(time);
+}
+// added by deeepesh singh
+function fncheckImport(ctrl) {
+	// alert('call');
+	if (ctrl.value == 'individual') {
+		document.getElementById('DivIndividualRecipient').style.display = 'block';
+		document.getElementById('DivImportFromFile').style.display = 'none';
+	} else {
+		document.getElementById('DivImportFromFile').style.display = 'block';
+		document.getElementById('DivIndividualRecipient').style.display = 'none';
+	}
+}
+//added by deeepesh singh
+function addContestListFrom() {
+	document.getElementById('ContactListTitle').value = '';
+	document.getElementById('ContactListId').value = '';
+	document.getElementById('addListDiv').style.display = 'block';
+}
+//added by deeepesh singh
+function contactsPageSearch(ctrl) {
+	var url = '/contacts/page_search/' + ctrl.value;
+	$j.ajax({
+		url : url,
+		type : "POST",
+		data : $j("#ContactIndexForm").serialize(),
+		success : function(response) {
+			Ekarda.Tools.updateElements(response);
+		}
+	});
+}
+function ecardContactsPageSearch(myecard_id, ctrl) {
+	var url = '/myecards/contacts_pagesearch/' + myecard_id + '/' + ctrl.value;
+	new Ajax.Updater(document.createElement('div'), url, {
+		method : 'post',
+		parameters : Form.serialize($('MyecardSearchMyecardscontactsForm')),
+		evalScripts : true,
+		requestHeaders : [ 'X-Update', 'msg DivSubscribeContactsList' ],
+		onComplete : function() {
+		}
+	});
+}
+function eCardRecipientPagesearch(myecard_id, ctrl) {
+    $j('#deleteContentLoader').show();
+	var url = '/myecards/recipient_pagesearch/' + myecard_id + '/' + ctrl.value;
+	new Ajax.Updater(document.createElement('div'), url, {
+		method : 'post',
+		parameters : Form.serialize($('MyecardSearchRecipientsForm')),
+		evalScripts : true,
+		requestHeaders : [ 'X-Update', 'msg DivSubscribeRecipientsList' ],
+		onComplete : function() {
+            $j('#deleteContentLoader').hide();
+		}
+	});
+}
+function eCardRecipientPagesearch_for_manual(myecard_id, ctrl) {
+	var url = '/myecards/recipient_pagesearch_for_manual/' + myecard_id + '/'
+			+ ctrl.value;
+	new Ajax.Updater(document.createElement('div'), url, {
+		method : 'post',
+		parameters : Form.serialize($('MyecardSearchRecipientsForm')),
+		evalScripts : true,
+		requestHeaders : [ 'X-Update', 'msg DivSubscribeRecipientsList_1' ],
+		onComplete : function() {
+		}
+	});
+}
+function suppressionPageSearch(ctrl) {
+	var url = '/contacts/suppresion_page_search/' + ctrl.value;
+	new Ajax.Updater(document.createElement('div'), url, {
+		method : 'post',
+		parameters : Form.serialize($('ContactDeleteSuppressionForm')),
+		evalScripts : true,
+		requestHeaders : [ 'X-Update', 'msg  suppressionListDiv' ],
+		onComplete : function() {
+			//return false;
+			/*if($("msg")!=null) {
+			$("msg").hide();
+			$("searchaddressform").reset();
+			}*/
+		}
+	});
+}
+function addCustomField() {
+	var flag = 0;
+	for (i = 0; i < total_count_custom && flag == 0; i++) {
+		if ($j('#custom_field_name_' + i).val() == '') {
+			$j('#msg_custom_filed').html(ENTER_CUSTOM_FILED + " " + (i + 1));
+			flag = 1;
+		}
+	}
+	if (flag == 1) {
+		return false;
+	} else {
+		var url = '/contact_lists/manage_custom_field';
+		$j.ajax({
+			url : url,
+			type : "POST",
+			data : $j("#customsign").serialize(),
+			success : function(response) {
+				Ekarda.Tools.updateElements(response);
+			}
+		});
+	}
+}
+// janak
+function editresend(id) {
+	var url = '/admin/users/edit_sender';
+	new Ajax.Updater(document.createElement('div'), url, {
+		method : 'post',
+		parameters : Form.serialize($('sign' + id)),
+		evalScripts : true,
+		requestHeaders : [ 'X-Update', 'sender_msg sform_sender' + id ],
+		onComplete : function() {
+			//return false;
+		}
+	});
+	return false;
+}
+//select custom field
+function SelectCustomField() {
+	var url = '/contacts/select_custom_field';
+	$j.ajax({
+		url : url,
+		type : "POST",
+		data : $j("#customsign").serialize(),
+		success : function(response) {
+			Ekarda.Tools.updateElements(response);
+			setTimeout(function() {
+				window.location.reload();
+			}, 1000)
+		}
+	});
+}
+//select top navigation tab
+function getTabSel() {
+	var sPath = window.location.pathname;
+	var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+	var pathArray = window.location.pathname.split('/');
+	// For edit methods, get second last argument of url which will be page name
+	if (!isNaN(sPage))
+		sPage = pathArray[pathArray.length - 2];
+	if (sPage == 'index')
+		sPage = pathArray[pathArray.length - 3];
+	//for manage card desing paging
+	if (pathArray[pathArray.length - 3] == 'card_designs')
+		sPage = pathArray[pathArray.length - 3];
+	else if (pathArray[pathArray.length - 3] == 'myecards'
+			|| pathArray[pathArray.length - 3] == 'saved_draft'
+			|| pathArray[pathArray.length - 3] == 'scheduled_cards')
+		sPage = pathArray[pathArray.length - 2];
+	var tabs = new Array();
+	tabs['dashboard'] = [ 'dashboard' ];
+	tabs['mycontacts'] = [ 'contacts', 'contact_lists', 'add',
+			'import_columnconf' ];
+	tabs['myecards'] = [ 'select_cardtypes', 'saved_draft', 'edit_resend',
+			'scheduled_cards', 'card_sent_sucess', 'card_send', 'card_preview',
+			'cardmessage', 'recipients' ];
+	tabs['adminadmin'] = [ 'home', 'admin_design_setups', 'sender', 'shop',
+			'custom_card_design_requests', 'edit_user_details', 'invoices',
+			'manage_payment_detail', 'edit_payment_detail' ];
+	tabs['reports'] = [ 'reports', 'login_report', 'ecard_usage_report',
+			'invoice_report', 'sales_report', 'view_report' ];
+	tabs['managecontent'] = [ 'contents' ];
+	tabs['faq'] = [ 'faqs' ];
+	//superadmin tabs
+	tabs['eCards'] = [ 'card_types', 'card_designs', 'card_templates', 'add',
+			'custom_carddesign', 'card_desing_pageging' ];
+	tabs['adminUsers'] = [ 'admin_users', 'admin_user_edit', 'adduser_account' ];
+	tabs['adminCharityUsers'] = [ 'charity'];
+	//		alert(tabs['myecards'].contains(sPage) +"==="+ $j('#li_myecards').length);
+	if (tabs['dashboard'].contains(sPage) && $j('#li_dashboard').length != 0) {
+		$j('#li_dashboard').addClass('current');
+	} else if (tabs['mycontacts'].contains(sPage)
+			&& $j('#li_contacts').length != 0) {
+		$j('#li_contacts').addClass('current');
+	} else if (tabs['adminadmin'].contains(sPage)
+			&& $j('#li_admin_admin').length != 0) {
+		$j('#li_admin_admin').addClass('current');
+	} else if (tabs['myecards'].contains(sPage)
+			&& $j('#li_myecards').length != 0) {
+		$j('#li_myecards').addClass('current');
+	} else if (tabs['reports'].contains(sPage) && $j('#li_report').length != 0) {
+		$j('#li_report').addClass('current');
+	} else if (tabs['managecontent'].contains(sPage)
+			&& $j('#li_manage_page').length != 0) {
+		$j('#li_manage_page').addClass('current');
+	} else if (tabs['faq'].contains(sPage) && $j('#li_faq').length != 0) {
+		$j('#li_faq').addClass('current');
+	} else if (tabs['eCards'].contains(sPage) && $j('#li_eCard').length != 0) {
+		$j('#li_eCard').addClass('current');
+	} else if (tabs['adminUsers'].contains(sPage)
+			&& $j('#li_adminUsers').length != 0) {
+		$j('#li_adminUsers').addClass('current');
+	} else if (tabs['reports'].contains(sPage)
+			&& $j('#li_superadmin_report').length != 0) {
+		$j('#li_superadmin_report').addClass('current');
+	} else if (tabs['adminCharityUsers'].contains(sPage)
+        && $j('#li_adminCharityUsers').length != 0) {
+        $j('#li_adminCharityUsers').addClass('current');
+    }
+}
+//for page tab selection
+Array.prototype.contains = function(zValue) {
+	for ( var i = 0; i < this.length; i++) {
+		if (this[i] == zValue) {
+			return true;
+		}
+	}
+	return false;
+}
+/*ltrim function created by ankita*/
+function ltrim(str) {
+	var whitespace = new String(" \t\n\r");
+	var s = new String(str);
+	if (whitespace.indexOf(s.charAt(0)) != -1) {
+		var j = 0, i = s.length;
+		while (j < i && whitespace.indexOf(s.charAt(j)) != -1)
+			j++;
+		s = s.substring(j, i);
+	}
+	return s;
+}
+/*ltrim function created by ankita*/
+//RTrim(string) : Returns a copy of a string without trailing spaces.
+function rtrim(str) {
+	var whitespace = new String(" \t\n\r");
+	var s = new String(str);
+	if (whitespace.indexOf(s.charAt(s.length - 1)) != -1) {
+		var i = s.length - 1; // Get length of string
+		while (i >= 0 && whitespace.indexOf(s.charAt(i)) != -1)
+			i--;
+		s = s.substring(0, i + 1);
+	}
+	return s;
+}
+/*ltrim function created by ankita*/
+function trim(str) {
+	return rtrim(ltrim(str));
+}
+function display_text() {
+	//alert('sgfffg');
+	if (document.getElementById('script').checked) {
+		document.getElementById('div1').style.display = 'block';
+		document.getElementById('div2').style.display = 'none';
+	}
+}
+function display_file() {
+	if (document.getElementById('imagefile').checked) {
+		document.getElementById('div2').style.display = 'block';
+		document.getElementById('div1').style.display = 'none';
+	}
+}
+function validateEmail(str) {
+	var at = "@"
+	var dot = "."
+	var lat = str.indexOf(at)
+	var lstr = str.length
+	var ldot = str.indexOf(dot)
+	if (str.indexOf(at) == -1) {
+		//alert("Invalid E-mail ID")
+		return false
+	}
+	if (str.indexOf(at) == -1 || str.indexOf(at) == 0
+			|| str.indexOf(at) == lstr) {
+		return false;
+	}
+	if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0
+			|| str.indexOf(dot) == lstr) {
+		return false;
+	}
+	if (str.indexOf(at, (lat + 1)) != -1) {
+		return false;
+	}
+	if (str.substring(lat - 1, lat) == dot
+			|| str.substring(lat + 1, lat + 2) == dot) {
+		return false;
+	}
+	if (str.indexOf(dot, (lat + 2)) == -1) {
+		return false
+	}
+	if (str.indexOf(" ") != -1) {
+		return false
+	}
+	return true
+}
+function checkName(name) {
+	re = /^[A-Za-z- ']+$/;
+	if (re.test(name))
+		return true
+	else
+		return false;
+}
+//added by deepesh
+function checkedAll(ids, lenId) {
+	$j("input:regex(id," + ids + "[0-9]+)").attr('checked', true);
+}
+function uncheckedAll(ids, lenId) {
+	$j("input:regex(id," + ids + "[0-9]+)").attr('checked', false);
+}
+function checkSelectionChekbox(ids, lenId, msg) {
+	var len = document.getElementById(lenId).value;
+	var flage = 0;
+	for ( var i = 0; i < len; i++) {
+		if (document.getElementById(ids + i).checked == true)
+			flage = 1;
+	}
+	if (flage == 0) {
+		alert(msg);
+		return false;
+	} else {
+		return true;
+	}
+}
+//added by deepesh
+function loadConactRecipients(myecardid) {
+	var url = '/myecards/subscribe_contacts/' + myecardid;
+	$j.ajax({
+		url : url,
+		type : "POST",
+		data : $j("#MyecardRecipientsForm").serialize(),
+        beforeSend:function () {
+            jQuery('.loaderRecipients').show();
+        },
+		success : function(response) {
+            jQuery('.loaderRecipients').hide();
+			$j("#mainDiveCardsRecipients").html($j(response).html());
+		}
+	});
+}
+//maxLenth in ie and firefox validation
+//'onkeypress' =>'textCounter(this,this.form.counter,260);')
+//input
+//onblur="textCounter(this.form.counter,this,255);">
+function textCounter(field, countfield, maxlimit) {
+	//	alert(field.value.length +"===="+ maxlimit);
+	if (field.value.length > maxlimit) {
+		field.value = field.value.substring(0, maxlimit);
+		return false;
+	} else {
+		//countfield.value = maxlimit - field.value.length;
+	}
+}
+function checkOnlyNumbers(strString) {
+	var strValidChars = "0123456789";
+	var strChar;
+	var blnResult = true;
+	if (strString.length == 0)
+		return false;
+	//  test strString consists of valid characters listed above
+	for (i = 0; i < strString.length && blnResult == true; i++) {
+		strChar = strString.charAt(i);
+		if (strValidChars.indexOf(strChar) == -1) {
+			blnResult = false;
+		}
+	}
+	return blnResult;
+}
+function ReportPageSearch(ctrl, myecard_id) {
+	if (myecard_id != '' && myecard_id != '0') {
+		//		var url = '/admin/accounts/report_page_search/' +ctrl.value+'/'+ myecard_id;
+		var url = '/admin/accounts/report_page_search/' + myecard_id + '/'
+				+ ctrl.value;
+	} else
+		var url = '/admin/accounts/report_page_search/' + ctrl.value;
+	$j.ajax({
+		url : url,
+		type : "POST",
+		data : $j("#AccountAdminViewReportForm").serialize(),
+		success : function(response) {
+			Ekarda.Tools.updateElements(response);
+		}
+	});
+}
+function adminUsersPageSearch(ctrl) {
+	var url = '/superadmin/users/admin_user_page_search/' + ctrl.value;
+	new Ajax.Updater('adminUserListDiv', url, {
+		method : 'post',
+		parameters : Form.serialize($('UserAdminSenderForm')),
+		evalScripts : true,
+		//requestHeaders:['X-Update', 'msg adminUserListDiv'],
+		onComplete : function() {
+		}
+	});
+}
+function SuperadminLoginPageSearch(ctrl) {
+	var url = '/superadmin/users/login_user_page_search/' + ctrl.value;
+	new Ajax.Updater('listing', url, {
+		method : 'post',
+		parameters : Form.serialize($('UserSuperadminLoginReportForm')),
+		evalScripts : true,
+		//requestHeaders:['X-Update', 'msg adminUserListDiv'],
+		onComplete : function() {
+		}
+	});
+}
+function SuperadminInvoicePageSearch(ctrl) {
+	/*
+	 var url = '/superadmin/invoices/invoice_user_page_search/' + $j(ctrl).val();
+	 $j.ajax({
+	 url: url,
+	 type: "POST",
+	 data: $j("#InvoiceSuperadminInvoiceSearchReportsForm").serialize(),
+	 success: function(response){
+	 //updateElements(response);
+	 }
+	 });
+	 */
+	var url = '/superadmin/invoices/invoice_user_page_search/' + ctrl.value;
+	new Ajax.Updater('listing', url, {
+		method : 'post',
+		parameters : Form
+				.serialize($('InvoiceSuperadminInvoiceSearchReportsForm')),
+		evalScripts : true,
+		// requestHeaders:['X-Update', 'msg adminUserListDiv'],
+		onComplete : function() {
+		}
+	});
+}
+function SuperadminSalesPageSearch(ctrl) {
+	var url = '/superadmin/invoices/sales_user_page_search/' + ctrl.value;
+	new Ajax.Updater('listing', url, {
+		method : 'post',
+		parameters : Form.serialize($('InvoiceSuperadminSalesReportForm')),
+		evalScripts : true,
+		//requestHeaders:['X-Update', 'msg adminUserListDiv'],
+		onComplete : function() {
+		}
+	});
+}
+/*function ReportAdminPageSearch(ctrl){
+ var url = '/admin/accounts/reports/';
+ new Ajax.Updater('listing',url ,
+ {
+ method: 'post',
+ parameters: Form.serialize($('AccountAdminReportsForm')),
+ evalScripts:true,
+ requestHeaders:['X-Update', 'search_result'],
+ onComplete: function() {
+ }
+ });
+ //new Ajax.Updater('listing','<?php echo SITE_URL?>/admin/accounts/reports', {asynchronous:true, evalScripts:true, parameters:Form.serializeElements($("AccountAdminReportsForm").getElements()), requestHeaders:['X-Update', 'search_result']})
+ }*/
+function ReportEcardUsagetPageSearch(ctrl) {
+	var url = '/superadmin/accounts/ecard_usage_page_search/' + ctrl.value;
+	new Ajax.Updater('listing', url,
+			{
+				method : 'post',
+				parameters : Form
+						.serialize($('AccountSuperadminEcardUsageReportForm')),
+				evalScripts : true,
+				//requestHeaders:['X-Update', 'msg adminUserListDiv'],
+				onComplete : function() {
+				}
+			});
+}
+function myecardSaveDraftPageSearch(ctrl) {
+	var url = '/myecards/save_draft_user_page_search/' + ctrl.value;
+	new Ajax.Updater('MyecardLists', url, {
+		method : 'post',
+		parameters : Form.serialize($('MyecardSavedDraftForm')),
+		evalScripts : true,
+		//requestHeaders:['X-Update', 'msg adminUserListDiv'],
+		onComplete : function() {
+		}
+	});
+}
+function superadmincustomcarddesignPageSearch(ctrl) {
+	var url = '/superadmin/card_designs/custom_carddesign_page_search/'
+			+ ctrl.value;
+	new Ajax.Updater(
+			'custom_carddesign_list_id',
+			url,
+			{
+				method : 'post',
+				parameters : Form
+						.serialize($('CustomCardDesignRequestCustomCarddesignlistForm')),
+				evalScripts : true,
+				//requestHeaders:['X-Update', 'msg adminUserListDiv'],
+				onComplete : function() {
+				}
+			});
+}
+function editCustomField1(id, total_selected_field, contact_id) {
+	if (custom_arr == '') {
+		custom_arr = contact_list_total_array[contact_id];
+	}
+	re = /^[0-9]+$/;
+	//alert(total_selected_field);
+	if (document.getElementById('Contact' + id + 'CustomField0') != undefined)
+		document.getElementById('Contact' + id + 'CustomField0').value = trim(document
+				.getElementById('Contact' + id + 'CustomField0').value);
+	document.getElementById('Contact' + id + 'FirstName').value = trim(document
+			.getElementById('Contact' + id + 'FirstName').value);
+	document.getElementById('Contact' + id + 'LastName').value = trim(document
+			.getElementById('Contact' + id + 'LastName').value);
+	document.getElementById('Contact' + id + 'Email').value = trim(document
+			.getElementById('Contact' + id + 'Email').value);
+	document.getElementById('Contact' + id + 'Company').value = trim(document
+			.getElementById('Contact' + id + 'Company').value);
+	var is_valid_email = validateEmail(document.getElementById('Contact' + id
+			+ 'Email').value);
+	var is_valid_fname = checkName(document.getElementById('Contact' + id
+			+ 'FirstName').value);
+	if (document.getElementById('Contact' + id + 'LastName').value == '') {
+		var is_valid_lname = true;
+	} else {
+		var is_valid_lname = checkName(document.getElementById('Contact' + id
+				+ 'LastName').value);
+	}
+	if (document.getElementById('Contact' + id + 'FirstName').value == '') {
+		document.getElementById('msg_popup' + id).innerHTML = FIRSTNAME_REQUIRED;
+		return false;
+	} else if (is_valid_fname == false) {
+		document.getElementById('msg_popup' + id).innerHTML = ENTER_ALPHABET_ONLY;
+		return false;
+	} else if (document.getElementById('Contact' + id + 'LastName').value == '') {
+		document.getElementById('msg_popup' + id).innerHTML = LASTNAME_REQUIRED;
+		return false;
+	} else if (is_valid_lname == false) {
+		document.getElementById('msg_popup' + id).innerHTML = ENTER_ALPHABET_ONLY;
+		return false;
+	} else if (document.getElementById('Contact' + id + 'Email').value == '') {
+		document.getElementById('msg_popup' + id).innerHTML = EMAIL_REQUIRED;
+		return false;
+	} else if (is_valid_email == false) {
+		document.getElementById('msg_popup' + id).innerHTML = VALID_EMAIL_REQUIRED;
+		return false;
+	} else if (document.getElementById('Contact' + id + 'Gender').value == '') {
+		document.getElementById('msg_popup' + id).innerHTML = SELECT_GENDER;
+		return false;
+	}
+	/*else if(document.getElementById('Contact'+id+'CustomField0')!=undefined && document.getElementById('Contact'+id+'CustomField0').value=='')
+	{
+		 document.getElementById('msg_popup'+id).innerHTML=ENTER_CUSTOM_FILED1;
+		 return false;
+	}	*/
+	else {
+		flag = 1;
+		for (i = 0; i < total_selected_field; i++) {
+			if (document.getElementById('Contact' + id + 'CustomField' + i) != undefined
+					&& document.getElementById('Contact' + id + 'CustomField'
+							+ i).value == '') {
+				var c = i + 1;
+				document.getElementById('msg_popup' + id).innerHTML = ENTER_CUSTOM_FILED
+						+ c + ".";
+				//document.getElementById('msg_popup'+id).innerHTML=ENTER_CUSTOM_FILED1+i;
+				flag = 0;
+				break;
+			} else {
+				//alert(custom_arr);
+				a = custom_arr;
+				//alert(a.length);
+				for (u = 0; u < a.length; u++) {
+					var c = i + 1;
+					if (u == i && a[u] == 'numeric') {
+						if (re.test(document.getElementById('Contact' + id
+								+ 'CustomField' + i).value)) {
+							//alert('this field is numberical');
+							document.getElementById('msg_popup' + id).innerHTML = "Please enter Only numbers for custom field"
+									+ c;
+							flag = 0;
+						} else {
+							document.getElementById('msg_popup' + id).innerHTML = "";
+							flag = 1;
+						}
+					}
+				}
+				//flag=0;
+				//break;
+			}
+		}
+		//alert(flag);
+		if (flag == 1) {
+			var url = '/contacts/edit';
+			new Ajax.Updater('sform_list' + id, url, {
+				method : 'post',
+				parameters : Form.serialize($('contact_id' + id)),
+				evalScripts : true
+			// requestHeaders:['X-Update', 'custom_msg'+id+'&sform_list'+id]
+			});
+		} else {
+			return false;
+		}
+	}
+}
+function editCustomField3(id, total_selected_field, contact_id) {
+	if (custom_arr == '') {
+		custom_arr = contact_list_total_array[contact_id];
+	}
+	re = /^[0-9]+$/;
+	//alert(total_selected_field);
+	if (document.getElementById('Contact' + id + 'CustomField0') != undefined)
+		document.getElementById('Contact' + id + 'CustomField0').value = trim(document
+				.getElementById('Contact' + id + 'CustomField0').value);
+	document.getElementById('Contact' + id + 'FirstName').value = trim(document
+			.getElementById('Contact' + id + 'FirstName').value);
+	document.getElementById('Contact' + id + 'LastName').value = trim(document
+			.getElementById('Contact' + id + 'LastName').value);
+	document.getElementById('Contact' + id + 'Email').value = trim(document
+			.getElementById('Contact' + id + 'Email').value);
+	document.getElementById('Contact' + id + 'Company').value = trim(document
+			.getElementById('Contact' + id + 'Company').value);
+	var is_valid_email = validateEmail(document.getElementById('Contact' + id
+			+ 'Email').value);
+	var is_valid_fname = checkName(document.getElementById('Contact' + id
+			+ 'FirstName').value);
+	if (document.getElementById('Contact' + id + 'LastName').value == '') {
+		var is_valid_lname = true;
+	} else {
+		var is_valid_lname = checkName(document.getElementById('Contact' + id
+				+ 'LastName').value);
+	}
+	if (document.getElementById('Contact' + id + 'FirstName').value == '') {
+		document.getElementById('msg_popup' + id).innerHTML = FIRSTNAME_REQUIRED;
+		return false;
+	} else if (is_valid_fname == false) {
+		document.getElementById('msg_popup' + id).innerHTML = ENTER_ALPHABET_ONLY;
+		return false;
+	} else if (is_valid_lname == false) {
+		document.getElementById('msg_popup' + id).innerHTML = ENTER_ALPHABET_ONLY;
+		return false;
+	} else if (document.getElementById('Contact' + id + 'Email').value == '') {
+		document.getElementById('msg_popup' + id).innerHTML = EMAIL_REQUIRED;
+		return false;
+	} else if (is_valid_email == false) {
+		document.getElementById('msg_popup' + id).innerHTML = VALID_EMAIL_REQUIRED;
+		return false;
+	} else {
+		flag = 1;
+		for (i = 0; i < total_selected_field; i++) {
+			if (document.getElementById('Contact' + id + 'CustomField' + i) != undefined
+					&& document.getElementById('Contact' + id + 'CustomField'
+							+ i).value == '') {
+				var c = i + 1;
+				document.getElementById('msg_popup' + id).innerHTML = ENTER_CUSTOM_FILED
+						+ c + ".";
+				//document.getElementById('msg_popup'+id).innerHTML=ENTER_CUSTOM_FILED1+i;
+				flag = 0;
+				break;
+			} else {
+				//alert(custom_arr);
+				a = custom_arr;
+				//alert(a.length);
+				for (u = 0; u < a.length; u++) {
+					var c = i + 1;
+					if (u == i && a[u] == 'numeric') {
+						if (re.test(document.getElementById('Contact' + id
+								+ 'CustomField' + i).value)) {
+							//alert('this field is numberical');
+							document.getElementById('msg_popup' + id).innerHTML = "Please enter Only numbers for custom field"
+									+ c;
+							flag = 0;
+						} else {
+							document.getElementById('msg_popup' + id).innerHTML = "";
+							flag = 1;
+						}
+					}
+				}
+				//flag=0;
+				//break;
+			}
+		}
+		//alert(flag);
+		if (flag == 1) {
+			$j(".loader").show();
+			var url = '/contacts/edit';
+			new Ajax.Updater(
+					'sform_list' + id,
+					url,
+					{
+						method : 'post',
+						parameters : Form.serialize($('contact_id' + id)),
+						evalScripts : false,
+						onComplete : function() {
+							setTimeout(
+									function() {
+										window.location.href = '/myecards/recipients/'
+												+ document
+														.getElementById("MyecardMyecardId").value;
+									}, 500);
+						}
+					});
+			//$j("#fancybox-content").html("<p>Record has been successfully saved</p>");
+		} else {
+			return false;
+		}
+	}
+}
+function openPopup(url,height,width) {
+    console.log(height);
+    if(!height) height = 500;
+    if(!width) width= 500;
+	myWindow = window
+			.open(
+					url,
+					'_blank',
+					'width='+width+',height='+height+',menubar=no,resizable=0,status=no,scrollbars=no,titlebar=no,toolbar=no,top=100,left=100,fullscreen=no');
+	myWindow.focus();
+	return false;
+}
+function checkValidFileExtension(file) {
+	extArray = new Array(".jpg", ".JPG", ".jpeg", ".JPEG", ".GIF", ".gif");
+	allowSubmit = false;
+	if (!file)
+		return false;
+	while (file.indexOf("\\") != -1)
+		file = file.slice(file.indexOf("\\") + 1);
+	ext = file.slice(file.indexOf(".")).toLowerCase();
+	for ( var i = 0; i < extArray.length; i++) {
+		if (extArray[i] == ext) {
+			allowSubmit = true;
+			break;
+		}
+	}
+	if (allowSubmit)
+		return true;
+	else
+		return false;
+}
+function isInteger(s) {
+	alert(Math.ceil(s) + "==" + Math.floor(s));
+	return Math.ceil(s) == Math.floor(s);
+}

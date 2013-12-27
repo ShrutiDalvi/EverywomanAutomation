@@ -1,0 +1,61 @@
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<style>
+/**
+ * Copyright  2006  V Narayan Raman
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+div{border:1px solid white;border-bottom:1px solid gray;padding:1px}
+a{text-decoration:none;color:white;}
+a.INFO{color:black}
+a.START,a.STOP{color:black;font-weight:bold;}
+div.INFO{background-color:white}
+div.SUCCESS{background-color:green;color:white}
+div.FAILURE,div.ERROR{background-color:red;color:white}
+a.CUSTOM, a.CUSTOM2, a.CUSTOM4{color:black}
+div.CUSTOM{background-color:yellow;}
+div.CUSTOM1{background-color:orange;}
+div.CUSTOM2{background-color:#EFEFEF;}
+div.CUSTOM3{background-color:green;}
+div.CUSTOM4{background-color:violet;}
+div.CUSTOM5{background-color:indigo;}
+a.SCRIPT{text-decoration:underline;}
+span.extra{color:#CCC;}
+div.SKIPPED{background-color:#eed;}
+a.SKIPPED{color:gray;}
+/**
+ * Copyright  2006  V Narayan Raman
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+table{border-top:1px solid gray;border-right:1px solid gray;border-spacing:0px;border-collapse:collapse;}
+td{border-bottom:1px solid gray;border-left:1px solid gray;padding:5px;text-align:right;}
+td a.SCRIPT{float:left;}
+tr.FAILURE{background-color:red;color:white;}
+tr.SUCCESS{background-color:green;color:white;}
+a{color:white;}
+</style></head>
+<table class='summary'><tr><td>Test</td><td>Total Steps</td><td>Failures</td><td>Errors</td><td>Success Rate</td><td>Time Taken (ms)</td></tr><tr class="FAILURE"><td>AutomationDriver_9.sah</td><td>2</td><td>0</td><td>1</td><td>50%</td><td>1461</td></tr></table>
+<br/><div class="START"><a class="START">Starting script</a></div><div class="ERROR"><a class="ERROR" href="/_s_/dyn/Log_highlight?href=scripts/TAF_SAHI/Custom_8.sah&n=524#selected" title="scripts/TAF_SAHI/Custom_8.sah&n=524">ERROR<br/>exception: java.sql.SQLException: [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified<br/>	at sun.jdbc.odbc.JdbcOdbc.createSQLException(JdbcOdbc.java:6956)<br/>	at sun.jdbc.odbc.JdbcOdbc.standardError(JdbcOdbc.java:7113)<br/>	at sun.jdbc.odbc.JdbcOdbc.SQLDriverConnect(JdbcOdbc.java:3072)<br/>	at sun.jdbc.odbc.JdbcOdbcConnection.initialize(JdbcOdbcConnection.java:323)<br/>	at sun.jdbc.odbc.JdbcOdbcDriver.connect(JdbcOdbcDriver.java:174)<br/>	at java.sql.DriverManager.getConnection(DriverManager.java:579)<br/>	at java.sql.DriverManager.getConnection(DriverManager.java:221)<br/>	at net.sf.sahi.plugin.DBClient.getResult(DBClient.java:96)<br/>	at net.sf.sahi.plugin.DBClient.select(DBClient.java:79)<br/>	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br/>	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)<br/>	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br/>	at java.lang.reflect.Method.invoke(Method.java:601)<br/>	at org.mozilla.javascript.MemberBox.invoke(MemberBox.java:161)<br/>	at org.mozilla.javascript.NativeJavaMethod.call(NativeJavaMethod.java:247)<br/>	at org.mozilla.javascript.Interpreter.interpretLoop(Interpreter.java:3330)<br/>	at org.mozilla.javascript.Interpreter.interpret(Interpreter.java:2487)<br/>	at org.mozilla.javascript.InterpretedFunction.call(InterpretedFunction.java:164)<br/>	at org.mozilla.javascript.ContextFactory.doTopCall(ContextFactory.java:398)<br/>	at org.mozilla.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3065)<br/>	at org.mozilla.javascript.InterpretedFunction.exec(InterpretedFunction.java:175)<br/>	at org.mozilla.javascript.Context.evaluateString(Context.java:1104)<br/>	at net.sf.sahi.rhino.RhinoScriptRunner.run(RhinoScriptRunner.java:114)<br/>	at java.lang.Thread.run(Thread.java:722)</a> <span class='extra'> at Sep 17, 2013 7:59:52 PM</span></div>
+<div class="CUSTOM2"><a class="CUSTOM2" title="">Total Memory in JVM (Xmx) is: 247.5 MB;<br/>Memory currently in use is: 17.20703125 MB;<br/>Memory increment during this test is: 1.58203125 MB<br/></a> <span class='extra'> at Sep 17, 2013 7:59:52 PM</span></div>
+<div class="STOP"><a class="STOP">Stopping script</a></div>

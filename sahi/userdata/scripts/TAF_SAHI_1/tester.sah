@@ -1,0 +1,90 @@
+   //_setValue(_textbox("_sahi_ignore_url"),"Hi");
+    function funcVerifyLink()
+	{
+		var $testvalue;
+	   _wait(2000);
+	   _navigateTo("http://www.yopmail.com","true");
+	   _wait(2000);
+	   _setValue(_textbox("login"), $prevrStringmail);
+	   _click(_submit("Check Inbox"));
+	   _wait(1000);
+	   _click(_span("Confirmation instructions"));
+	   _wait(1000);
+	   _click(_link("Confirm my account"));
+	   $testvalue=_popup("Smarter-Places")._assertExists(_div("You just joined Smarter places.You can buy tags, place tags and see the reportings."));
+	   if($testvalue=="true")
+	   {
+	   _popup("Smarter-Places")._log("Account Verified Successfully Now You can create tag to add contents","success");
+	   
+	   }
+	   else
+	   {
+		  _popup("Smarter-Places")._log("Account not Verified Successfully Now Please Check You Entered Correct Email ID","Failure");
+	   
+	   }
+	   _closeWindow();
+   }
+   
+function funcVerifyCreateTags()
+{
+	var $tagcount;
+	var $tagsfirst;
+	var $tagssecond;
+    var $resulttags; 
+	  
+	if ($strPopup=="null")
+	{
+		 $tagcount=$strParam1;
+		_log("Total number of tags to create :: " + $tagcount,"custom");
+		$tagsfirst = _count ("_div", "/sample/");
+		_log("The intially total numbers of tags are::"+ $tagsfirst,"custom1");
+		_wait(1000);
+        _click(_link("create tag"));
+	    _wait(2000);
+	    _setValue(_textbox(0,_near(_label("* Please Enter no. of tags"))),$tagcount);
+	    _click(_submit("submit"));
+		_wait(1000);
+		$tagssecond=_count("_div","/sample/");
+		_log("After creating "+ $tagcount + " " + "tags" +" " + "Total tags exists are ::"+ $tagssecond,"custom5");
+		$resulttags=$tagsfirst+$tagcount;
+		if($tagssecond==$resulttags)
+		{
+		  _log("Tags are created successfully now total tags present are :: " + $tagssecond,"success");
+		}
+		else
+		{
+		  _log("Tags are not created successfully now total tags present are :: " + $tagssecond,"failure");
+		}
+			
+	}
+	else
+	{
+		 $tagcount=$strParam1;
+		_popup($strPopup)._log("Total number of tags to create :: " + $tagcount,"custom1");
+		$tagsfirst = _count ("_div", "/sample/");
+		_popup($strPopup)._log("The intially total numbers of tags are::"+ $tagsfirst,"custom4");
+		_popup($strPopup)._wait(1000);
+        _popup($strPopup)._click(_link("create tag"));
+	    _popup($strPopup)._wait(2000);
+	    _popup($strPopup)._setValue(_textbox(0,_near(_label("* Please Enter no. of tags"))),$tagcount);
+	    _popup($strPopup)._click(_submit("submit"));
+		_popup($strPopup)._wait(1000);
+		$tagssecond=_count("_div","/sample/");
+		_popup($strPopup)._log("After creating "+ $tagcount + " " + "tags" +" " + "Total tags exists are ::"+ $tagssecond,"custom5");
+		$tagcount=parseInt($tagcount);
+		$resulttags=parseInt($resulttags);
+		$resulttags=$tagsfirst + $tagcount;
+		if($tagssecond==$resulttags)
+		{
+		  _popup($strPopup)._log("Tags are created successfully now total tags present are :: " + $tagssecond,"success");
+		}
+		else
+		{
+		  _popup($strPopup)._log("Tags are not created successfully now total tags present are :: " + $tagssecond,"failure");
+		}
+		 
+	}
+
+		
+
+}

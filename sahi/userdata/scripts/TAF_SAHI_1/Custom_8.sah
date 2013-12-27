@@ -1,0 +1,3117 @@
+function funcVerifyLink()
+{
+   _setValue(_textbox("_sahi_ignore_url"),"Hi");
+   _wait(2000);
+   _navigateTo("http://www.yopmail.com");
+   _closeWindow();
+ 
+}
+
+function funcFileUpload()
+{
+    _setFile(_file($strControlName), $strParam1);
+	_call(_file($strControlName).type = "text");
+	_focus(_textbox($strControlName));
+	_setValue(_textbox($strControlName), $strParam1);
+}
+
+function funVerifyText()
+{
+	_set($value1,_getCellText(_textbox(0,_near(_cell($strControlName)))));
+	_set($value,_assertEqual($value1, $strParam1));
+}
+
+function funFileDownload()
+{
+	//_sendHTMLResponseAfterFileDownload(true)
+	 _saveDownloadedAs("E:/sahi/userdata/scripts/TAF_SAHI/Downloaded_Reports/ComplimentaryTransactionReport.pdf");
+}
+
+
+function funClickOK()
+{
+
+
+
+                if($strMatchType == "TRUE")
+				{
+					_set($value,_assertEqual(_lastAlert(), $strParam1));
+					if($value="true")
+					{
+					 _expectConfirm($strParam1,true)
+					}
+				}
+}
+function funClickAlert()
+{
+                if($strMatchType == "TRUE")
+				{
+					_set($value,_assertEqual(_lastConfirm(), $strParam1));
+					if($value="true")
+					{
+					 _expectConfirm($strParam1,true)
+					}
+				}
+				else if($strMatchType == "FALSE")
+				{
+				    _set($value,_assertNotEqual(_lastConfirm(), $strParam1));
+					if($value="true")
+					{
+					_expectConfirm($strParam1,false)
+					}
+				}
+}
+
+function funcwait()
+{
+	_wait($strParam1);
+	//funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+}
+function funcCompareResults()
+{
+                $arrColumn = $strUnderControlName.split("|");
+				$lenArrColumn = $arrColumn.length;
+
+				var $contents=_readFile($path1+$arrColumn[0]+"Baseline.csv");
+				var $contents1=_readFile($path2+$arrColumn[1]+".csv"); 
+				if($contents==$contents1)
+				{
+				  _log("The Baseline File of Table is similar to Target File","success");
+				}
+				else
+				{
+				  _log("The Baseline File of Table is not similar to Target File","failure");
+				}  
+}
+function funAlert()
+{
+                    if($strMatchType == "TRUE" || $strMatchType == "null"|| $strMatchType == "1")
+					{
+					   _set($value,_assertEqual($strParam1, _lastAlert()));
+						if($value=="true")
+						{
+						 _log(" The Result is:PASS","Success");
+						}
+						else
+						{
+						  _log(" The Result is:FAIL","failure");
+						  funcTcExecutionDriver($ii+1);
+						} 
+					}
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+					    _set($value,_assertNotEqual($strParam1, _lastAlert()));
+						if($value=="true")
+						{
+						 _log(" The Result is:PASS","success");
+						}
+						else
+						{
+						  _log(" The Result is:FAIL","failure");
+						  funcTcExecutionDriver($ii+1);
+						} 
+					}
+}
+
+function funcWrite()
+{
+                if($ExecutionMode==1)
+				{
+					while($TCondition=="True")
+					{
+						$arrColumn = $strUnderControlName.split("|");
+						$lenArrColumn = $arrColumn.length;	
+						_set($value1,_getCellText(_cell($k,_under(_cell($arrColumn[0])))));
+						if($value1!="")
+						{   
+						    _writeFile("\r\n", $path1+$iTestCaseId+"Baseline.csv");
+							
+							for($j=0;$j<$lenArrColumn;$j++)
+							{
+								_set($value3,_getCellText(_cell($k,_under(_cell($arrColumn[$j])))));
+								_writeFile($value3+ ",", $path1+$iTestCaseId+"Baseline.csv");
+								$TCondition="True";
+							}
+						}
+						else
+						{
+						   $TCondition="False";
+						}    	
+					    $k=$k+1;
+					}  
+		        }
+				if($ExecutionMode==2)
+				{
+					while($TCondition=="True")
+					{
+						$arrColumn = $strUnderControlName.split("|");
+						$lenArrColumn = $arrColumn.length;	
+						_set($value1,_getCellText(_cell($k,_under(_cell($arrColumn[0])))));
+						if($value1!="")
+						{   
+						    _writeFile("\r\n", $path1+$iTestCaseId+"Baseline.csv");
+							
+							for($j=0;$j<$lenArrColumn;$j++)
+							{
+								_set($value3,_getCellText(_cell($k,_under(_cell($arrColumn[$j])))));
+								_writeFile($value3+ ",", $path1+$iTestCaseId+"Baseline.csv");
+								$TCondition="True";
+							}
+						}
+						else
+						{
+						   $TCondition="False";
+						}    	
+					    $k=$k+1;
+					}  
+		        }
+				if($ExecutionMode==3)
+				{
+				   $TCondition="True"
+				   $k=0;
+					while($TCondition=="True")
+					{
+						$arrColumn = $strUnderControlName.split("|");
+						$lenArrColumn = $arrColumn.length;	
+						_set($value1,_getCellText(_cell($k,_under(_cell($arrColumn[0])))));
+						if($value1!="")
+						{   
+						    _writeFile("\r\n", $path2+$iTestCaseId+".csv");
+							for($j=0;$j<$lenArrColumn;$j++)
+							{
+							  _set($value3,_getCellText(_cell($k,_under(_cell($arrColumn[$j])))));
+							  _writeFile($value3 +",", $path2+$iTestCaseId+".csv");
+							  $TCondition="True";
+								
+							}
+						}
+						else
+						{
+						   $TCondition="False";
+						}    	
+					   
+						 $k=$k+1;
+					}  
+					var $contents=_readFile($path1+$iTestCaseId+"Baseline.csv");
+					var $contents1=_readFile($path2+$iTestCaseId+".csv"); 
+					if($contents==$contents1)
+					{
+					  _log("The Baseline File of Table is similar to Target File","success");
+					}
+					else
+					{
+					  _log("The Baseline File of Table is not similar to Target File","failure");
+					}  
+				}
+}
+
+function funVerifySelected()
+{
+
+if($strControl == "select")
+				{
+					var $iFlag=0;
+					var $arrParamValues;
+					if($strPopup == "null")
+					{
+					_set($arrParamValues, $strParam1.split("|"));
+					}
+					else
+					{
+					_popup($strPopup)._set($arrParamValues, $strParam1.split("|"));
+					}
+					$iLength = $arrParamValues.length;
+					
+					if($iLength == 1)
+					{
+						if($strPopup == "null")
+						{
+							//If condition to check if the operation is without near, under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								_set($ListData,_getText(_select($strControlName)));
+							}
+							//If condition to check if the operation is with near
+							if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)))));
+
+								}
+								if($strControlNear == "div")
+								{
+									_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)))));
+
+								}
+							}
+							
+							//If condition to check if the operation is with under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionUnder = parseInt($iPositionUnder);
+								if($strUnderControlType == "cell")
+								{
+									_set($ListData,_getText(_select($iPositionUnder, _under(_cell($strUnderControlName)))));
+								}
+								if($strUnderControlType == "div")
+								{
+									_set($ListData,_getText(_select($iPositionUnder, _under(_div($strUnderControlName)))));
+
+								}
+							}
+							//If condition to check if the operation is to be done using both near and under
+							if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+								
+								if($strControlNear == "div")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+							}	
+							if($ListData.indexOf($strParam1) != -1)
+							{
+								_log("Test Case ID - "+ $iTestCaseId + "Pass. Expected value found in combo box","success");
+								funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+							}
+							else
+							{
+								_log("Test Case ID - "+ $iTestCaseId + "FAIL. Expected value not found in combo box","failure");
+								$blgVerStatus="failure";
+								funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+							}
+						}
+						else
+						{
+							//If condition to check if the operation is without near, under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								_set($ListData,_popup($strPopup)._getText(_select($strControlName)));
+							}
+							//If condition to check if the operation is with near
+							if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)))));
+
+								}
+								if($strControlNear == "div")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)))));
+
+								}
+							}
+							
+							//If condition to check if the operation is with under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionUnder = parseInt($iPositionUnder);
+								if($strUnderControlType == "cell")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionUnder, _under(_cell($strUnderControlName)))));
+
+								}
+								if($strUnderControlType == "div")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionUnder, _under(_div($strUnderControlName)))));
+
+								}
+							}
+							
+							//If condition to check if the operation is to be done using both near and under
+							if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+								
+								if($strControlNear == "div")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+							}
+							if($ListData.indexOf($strParam1) != -1)
+							{
+								if($strPopup == "null")
+						        {
+								  _log("Test Case ID - "+ $iTestCaseId + "Pass. Expected value found in combo box","success");
+								  funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+								}
+								else
+								{
+								_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + "Pass. Expected value found in combo box","success");
+								funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+							    }
+							}
+							else
+							{
+								$blgVerStatus="failure";
+								if($strPopup == "null")
+						        {
+								  _log("Test Case ID - "+ $iTestCaseId + "Fail. Expected value not found in combo box","failure");
+								  funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+								}
+								else
+								{
+							         _popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + "Fail. Expected value not found in combo box","failure");
+									 funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+								
+							}   }
+						}
+					}
+					
+					if($iLength > 1)
+					{
+						if($strPopup == "null")
+						{
+							//If condition to check if the operation is without near, under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								_set($ListData,_getText(_select($strControlName)));
+							}
+							//If condition to check if the operation is with near
+							if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)))));
+
+								}
+								if($strControlNear == "div")
+								{
+									_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)))));
+
+								}
+							}
+							
+							//If condition to check if the operation is with under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionUnder = parseInt($iPositionUnder);
+								if($strUnderControlType == "cell")
+								{
+									_set($ListData,_getText(_select($iPositionUnder, _under(_cell($strUnderControlName)))));
+
+								}
+								if($strUnderControlType == "div")
+								{
+									_set($ListData,_getText(_select($iPositionUnder, _under(_div($strUnderControlName)))));
+
+								}
+							}
+							
+							//If condition to check if the operation is to be done using both near and under
+							if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+								
+								if($strControlNear == "div")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_getText(_select($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+							}
+						}
+						else
+						{
+							//If condition to check if the operation is without near, under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								_set($ListData,_popup($strPopup)._getText(_select($strControlName)));
+							}
+							//If condition to check if the operation is with near
+							if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)))));
+
+								}
+								if($strControlNear == "div")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)))));
+
+								}
+							}
+							
+							//If condition to check if the operation is with under
+							if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionUnder = parseInt($iPositionUnder);
+								if($strUnderControlType == "cell")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionUnder, _under(_cell($strUnderControlName)))));
+
+								}
+								if($strUnderControlType == "div")
+								{
+									_set($ListData,_popup($strPopup)._getText(_select($iPositionUnder, _under(_div($strUnderControlName)))));
+
+								}
+							}
+							
+							//If condition to check if the operation is to be done using both near and under
+							if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+							{
+								$iPositionNear = parseInt($iPositionNear);
+								if($strControlNear == "cell")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+								
+								if($strControlNear == "div")
+								{
+									if($strUnderControlType == "cell")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName)))));
+									}
+									if($strUnderControlType == "div")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName)))));
+									}
+									if($strUnderControlType == "select")
+									{
+										_set($ListData,_popup($strPopup)._getText(_select($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName)))));
+									}
+								}
+							}
+						}
+						
+						for($iCount=0;$iCount<$iLength;$iCount++)
+						{
+							if($ListData.indexOf($arrParamValues[$iCount]) != -1)
+							{
+								if($strPopup == "null")
+								{ 
+								_log("Value - "+ $arrParamValues[$iCount] + " found in the combo box", "success");
+								}	
+								else
+								{
+								  _popup($strPopup)._log("Value - "+ $arrParamValues[$iCount] + " found in the combo box", "success");
+								 }							 
+								
+							}
+							else
+							{
+								if($strPopup == "null")
+				                { 
+								 _log("Value - "+ $arrParamValues[$iCount] + " not found in the combo box", "failure");
+								}	
+								else
+								{
+								  _popup($strPopup)._log("Value - "+ $arrParamValues[$iCount] + " not found in the combo box", "failure");
+								}
+								
+								$iFlag = 1;
+							}
+						}
+						
+						if($iFlag != 1)
+						{
+							if($strPopup == "null")
+				            { 
+								 _log("Test Case ID - "+ $iTestCaseId + "Pass. Expected value found in combo box","success");
+								 funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+							}
+							else
+							{
+							   _popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + "Pass. Expected value found in combo box","success");
+							   funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+							}
+							
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							if($strPopup == "null")
+				            { 
+								 _log("Test Case ID - "+ $iTestCaseId + "Fail. Some or all expected values not found in combo box","failure");
+								 funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+							}
+							else
+							{
+							   _popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + "Fail. Some or all expected values not found in combo box","failure");
+							   funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+							}
+							
+						}
+					}
+				}
+			
+			if($strControl == "radio")
+			{
+				var $value;
+				
+				if($strPopup == "null")
+				{
+					//_set($value, _radio($strControlName).checked);
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($value, _radio($strControlName).checked);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($value,_radio($iPositionNear, _near(_cell($strControlName))).checked);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($value,_radio($iPositionNear, _near(_div($strControlName))).checked);
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($value,_radio($iPositionUnder, _under(_cell($strUnderControlName))).checked);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($value,_radio($iPositionUnder, _under(_div($strUnderControlName))).checked);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_radio($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_radio($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_radio($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_radio($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_radio($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_radio($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+					}
+					
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null" || $strMatchType=="1")
+					{
+						if($value == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType=="0")
+					{
+						if($value == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+						}
+					}
+				}
+				else
+				{
+					//_set($value, _popup($strPopup)._radio($strControlName).checked);
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($value, _popup($strPopup)._radio($strControlName).checked);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($value,_popup($strPopup)._radio($iPositionNear, _near(_cell($strControlName))).checked);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($value,_popup($strPopup)._radio($iPositionNear, _near(_div($strControlName))).checked);
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($value,_popup($strPopup)._radio($iPositionUnder, _under(_cell($strUnderControlName))).checked);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($value,_popup($strPopup)._radio($iPositionUnder, _under(_div($strUnderControlName))).checked);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_popup($strPopup)._radio($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_popup($strPopup)._radio($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_popup($strPopup)._radio($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_popup($strPopup)._radio($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_popup($strPopup)._radio($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_popup($strPopup)._radio($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null" || $strMatchType=="1")
+					{
+						if($value == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType=="0")
+					{
+						if($value == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+						}
+					}
+				}
+			}
+			
+			if($strControl == "checkbox")
+			{
+				var $value;
+				
+				if($strPopup == "null")
+				{
+					//_set($value, _checkbox($strControlName).checked);
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($value, _checkbox($strControlName).checked);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($value,_checkbox($iPositionNear, _near(_cell($strControlName))).checked);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($value,_checkbox($iPositionNear, _near(_div($strControlName))).checked);
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($value,_checkbox($iPositionUnder, _under(_cell($strUnderControlName))).checked);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($value,_checkbox($iPositionUnder, _under(_div($strUnderControlName))).checked);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_checkbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_checkbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_checkbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_checkbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_checkbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_checkbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+					}
+					
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null" || $strMatchType=="1")
+					{
+						if($value == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType=="0")
+					{
+						if($value == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+						}
+					}
+				}
+				else
+				{
+					//_set($value, _popup($strPopup)._radio($strControlName).checked);
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($value, _popup($strPopup)._checkbox($strControlName).checked);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName))).checked);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName))).checked);
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($value,_popup($strPopup)._checkbox($iPositionUnder, _under(_cell($strUnderControlName))).checked);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($value,_popup($strPopup)._checkbox($iPositionUnder, _under(_div($strUnderControlName))).checked);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).checked);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($value,_popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).checked);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null" || $strMatchType=="1")
+					{
+						if($value == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType=="0")
+					{
+						if($value == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " FAIL ", "failure");
+						}
+					}
+				}
+			}
+
+}
+
+function funcVerifyEnabled()
+{
+   if($strControl == "textbox")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+				//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_textbox($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _textbox($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _textbox($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _textbox($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _textbox($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_textbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_textbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_textbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_textbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_textbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_textbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+							$ResultCom="Expected Enabled property value is:"+ $strParam1 +"and actual value is:"+$strEnabledValue
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure");
+							$ResultCom="Expected Enabled property value is:"+ $strParam1 +"and actual value is:"+$strEnabledValue
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+							$ResultCom="Expected Enabled property value is:"+ $strParam1 +"and actual value is:"+$strEnabledValue
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure");
+							$ResultCom="Expected Enabled property value is:"+ $strParam1 +"and actual value is:"+$strEnabledValue
+							//funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);							
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					_popup($strPopup)._log($iPositionUnder);
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textbox($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textbox($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textbox($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textbox($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}	
+			
+			if($strControl == "select")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+				//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_select($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _select($iPositionNear, _near(_cell($strControlName))).disabled);
+							//funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _select($iPositionNear, _near(_div($strControlName))).disabled);
+							//funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _select($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _select($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_select($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_select($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_select($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_select($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_select($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_select($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._select($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					_popup($strPopup)._log($iPositionUnder);
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._select($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._select($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._select($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._select($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._select($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._select($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._select($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._select($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._select($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._select($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._select($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			if($strControl == "textarea")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+				//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_textarea($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _textarea($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _textarea($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _textarea($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _textarea($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_textarea($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_textarea($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_textarea($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_textarea($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_textarea($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_textarea($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textarea($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					_popup($strPopup)._log($iPositionUnder);
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._textarea($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textarea($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textarea($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textarea($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._textarea($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textarea($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textarea($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textarea($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textarea($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textarea($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._textarea($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			if($strControl == "reset")
+			{
+				var $strEnabledValue;
+				if($strPopup == "null")
+				{
+				//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_reset($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _reset($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _reset($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _reset($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _reset($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_reset($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_reset($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_reset($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_reset($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_reset($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_reset($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._reset($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._reset($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._reset($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._reset($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._reset($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._reset($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._reset($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._reset($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._reset($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._reset($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._reset($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			
+			if($strControl == "link")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_link($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _link($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _link($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _link($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _link($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_link($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_link($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_link($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_link($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_link($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_link($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._link($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._link($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._link($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._link($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._link($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._link($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._link($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._link($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._link($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._link($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._link($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			
+			if($strControl == "button")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_button($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _button($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _button($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _button($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _button($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_button($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_button($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_button($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_button($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_button($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_button($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._button($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._button($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._button($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._button($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._button($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._button($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._button($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._button($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._button($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._button($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._button($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			
+			if($strControl == "checkbox")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_checkbox($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _checkbox($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _checkbox($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _checkbox($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _checkbox($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_checkbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_checkbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_checkbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_checkbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_checkbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_checkbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._checkbox($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._checkbox($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._checkbox($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._checkbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._checkbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			
+			if($strControl == "imageSubmitButton")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_imageSubmitButton($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _imageSubmitButton($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _imageSubmitButton($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _imageSubmitButton($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _imageSubmitButton($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_imageSubmitButton($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_imageSubmitButton($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_imageSubmitButton($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_imageSubmitButton($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_imageSubmitButton($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_imageSubmitButton($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._imageSubmitButton($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._imageSubmitButton($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._imageSubmitButton($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._imageSubmitButton($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._imageSubmitButton($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._imageSubmitButton($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._imageSubmitButton($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._imageSubmitButton($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._imageSubmitButton($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._imageSubmitButton($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._imageSubmitButton($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			
+			if($strControl == "image")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_image($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _image($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _image($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _image($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _image($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_image($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_image($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_image($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_image($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_image($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_image($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure");	
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure");
+							funcUpdateResultStatus($iRound,$strTestScenario,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);							
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._image($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._image($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._image($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._image($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._image($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._image($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._image($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._image($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._image($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._image($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._image($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+			
+			if($strControl == "emailbox")
+			{
+				var $strEnabledValue;
+				
+				if($strPopup == "null")
+				{
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_emailbox($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _emailbox($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _emailbox($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _emailbox($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _emailbox($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_emailbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_emailbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_emailbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_emailbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_emailbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_emailbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+				
+				else					
+				{
+					//_set($strEnabledValue,_popup($strPopup)._textbox($strControlName).disabled);
+					//If condition to check if the operation is without near, under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						_set($strEnabledValue,_popup($strPopup)._emailbox($strControlName).disabled);
+					}
+					//If condition to check if the operation is with near
+					if($iPositionNear!="null" && $strControlNear!="null" && $iPositionUnder == "null" && $strUnderControlName == "null" && $strUnderControlType=="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._emailbox($iPositionNear, _near(_cell($strControlName))).disabled);
+
+						}
+						if($strControlNear == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._emailbox($iPositionNear, _near(_div($strControlName))).disabled);
+
+						}
+					}
+					
+					//If condition to check if the operation is with under
+					if($iPositionNear=="null" && $strControlNear=="null" && $iPositionUnder != "null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionUnder = parseInt($iPositionUnder);
+						if($strUnderControlType == "cell")
+						{
+							_set($strEnabledValue, _popup($strPopup)._emailbox($iPositionUnder, _under(_cell($strUnderControlName))).disabled);
+						}
+						if($strUnderControlType == "div")
+						{
+							_set($strEnabledValue, _popup($strPopup)._emailbox($iPositionUnder, _under(_div($strUnderControlName))).disabled);
+						}
+					}
+					//If condition to check if the operation is to be done using both near and under
+					if($iPositionNear!="null" && $strControlNear!="null" && $strUnderControlName != "null" && $strUnderControlType!="null")
+					{
+						$iPositionNear = parseInt($iPositionNear);
+						if($strControlNear == "cell")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._emailbox($iPositionNear, _near(_cell($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._emailbox($iPositionNear, _near(_cell($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._emailbox($iPositionNear, _near(_cell($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+						
+						if($strControlNear == "div")
+						{
+							if($strUnderControlType == "cell")
+							{
+								_set($strEnabledValue,_popup($strPopup)._emailbox($iPositionNear, _near(_div($strControlName)),_under(_cell($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "div")
+							{
+								_set($strEnabledValue,_popup($strPopup)._emailbox($iPositionNear, _near(_div($strControlName)),_under(_div($strUnderControlName))).disabled);
+							}
+							if($strUnderControlType == "select")
+							{
+								_set($strEnabledValue,_popup($strPopup)._emailbox($iPositionNear, _near(_div($strControlName)),_under(_select($strUnderControlName))).disabled);
+							}
+						}
+					}
+					if($strMatchType == "TRUE" || $strMatchType == "null"||$strMatchType == "1")
+					{
+						if($strEnabledValue == false)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+					
+					if($strMatchType == "FALSE" || $strMatchType == "0")
+					{
+						if($strEnabledValue == true)
+						{
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Pass ", "success");
+						}
+						else
+						{
+							$blgVerStatus="failure";
+							_popup($strPopup)._log("Test Case ID - "+ $iTestCaseId + " Fail", "failure"); 
+						}
+					}
+				}
+			}
+
+
+}

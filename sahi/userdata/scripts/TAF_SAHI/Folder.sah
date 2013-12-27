@@ -1,0 +1,6 @@
+function create()
+{ 
+	var $file = new java.io.File("H:/folder1").mkdir();
+}
+
+create();

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="iem7"  lang="en" dir="ltr"><![endif]-->
+<!--[if lte IE 6]><html class="lt-ie9 lt-ie8 lt-ie7"  lang="en" dir="ltr"><![endif]-->
+<!--[if (IE 7)&(!IEMobile)]><html class="lt-ie9 lt-ie8"  lang="en" dir="ltr"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9"  lang="en" dir="ltr"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><!--><html  lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"><!--<![endif]-->
+
+<head><!--SAHI_INJECT_START-->
+<script>/*<![CDATA[*//*---->*/__sahiDebugStr__="";__sahiDebug__=function(s){__sahiDebugStr__+=(s+"\n");};/*--*//*]]>*/</script>
+<script src="/_s_/dyn/SessionState_domainfix/domainfix.js"></script>
+<script src='/_s_/spr/concat.js' id='_sahi_concat'></script>
+<script src='http://sahi.example.com/_s_/dyn/SessionState/state.js'></script>
+<script src='/_s_/spr/language_pack.js' id='langpack'></script>
+<script>/*<![CDATA[*//*---->*/_sahi.createCookie('sahisid', _sahi.sid);_sahi.loadXPathScript()/*--*//*]]>*/</script>
+<script>/*<![CDATA[*//*---->*/eval(_sahi.sendToServer("/_s_/dyn/Player_script/script.js"));/*--*//*]]>*/</script>
+<script src='/_s_/spr/playback.js'></script>
+<!--SAHI_INJECT_END-->
+  <meta charset="utf-8" />
+<link rel="shortcut icon" href="http://testing-ew.weboapps.com/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="alternate" type="application/rss+xml" title="Everywoman RSS" href="http://testing-ew.weboapps.com/rss.xml" />
+  <title>Everywoman</title>
+          <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="cleartype" content="on">
+
+  <style>@import url("http://testing-ew.weboapps.com/modules/system/system.base.css?mv678g");</style>
+<style>@import url("http://testing-ew.weboapps.com/modules/comment/comment.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/field/theme/field.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/node/node.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/search/search.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/user/user.css?mv678g");
+@import url("http://testing-ew.weboapps.com/sites/all/modules/contrib/views/css/views.css?mv678g");</style>
+<style>@import url("http://testing-ew.weboapps.com/sites/all/modules/contrib/ckeditor/ckeditor.css?mv678g");
+@import url("http://testing-ew.weboapps.com/sites/all/modules/contrib/ctools/css/ctools.css?mv678g");</style>
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/everywoman/everywoman-internals/css/jquery-ui-1.9.2.custom.min.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/everywoman/everywoman-internals/css/bootstrap.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/everywoman/everywoman-internals/css/front_end.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/everywoman/everywoman-internals/css/developer.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/everywoman/everywoman-internals/css/customCheckbox.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/everywoman/everywoman-internals/css/jquery.fancybox.css" media="all" />
+  <script src="http://testing-ew.weboapps.com/misc/jquery.js?v=1.4.4"></script>
+<script src="http://testing-ew.weboapps.com/misc/jquery.once.js?v=1.2"></script>
+<script src="http://testing-ew.weboapps.com/misc/drupal.js?mv678g"></script>
+<script src="http://testing-ew.weboapps.com/sites/all/themes/everywoman/everywoman-internals/js/custom_user.js?mv678g"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/slider/jquery1.9.1.min.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/slider/jquery-migrate-1.2.1.min.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/slider/jquery.film_roll.js"></script>
+<script src="/misc/jquery.once.js"></script>
+<script src="/misc/jquery.cookie.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/jquery.validate.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/placeholder-labels.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/customInput.jquery.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+<script src="/sites/all/themes/everywoman/everywoman-internals/js/fancybox/jquery.fancybox.pack.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"everywoman","theme_token":"9W3CZm7nsJ1MBE3Cm9gV2XiOG-NzSnNV1DoUUaVXutA","js":{"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/themes\/everywoman\/everywoman-internals\/js\/custom_user.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/slider\/jquery1.9.1.min.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/slider\/jquery-migrate-1.2.1.min.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/slider\/jquery.film_roll.js":1,"\/misc\/jquery.once.js":1,"\/misc\/jquery.cookie.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/jquery.validate.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/placeholder-labels.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/jquery-migrate-1.2.1.min.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/customInput.jquery.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/fancybox\/jquery.mousewheel-3.0.6.pack.js":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/js\/fancybox\/jquery.fancybox.pack.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/comment\/comment.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/ckeditor\/ckeditor.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/css\/jquery-ui-1.9.2.custom.min.css":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/css\/bootstrap.css":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/css\/front_end.css":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/css\/developer.css":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/css\/customCheckbox.css":1,"\/sites\/all\/themes\/everywoman\/everywoman-internals\/css\/jquery.fancybox.css":1,"sites\/all\/themes\/everywoman\/system.menus.css":1,"sites\/all\/themes\/everywoman\/system.messages.css":1,"sites\/all\/themes\/everywoman\/system.theme.css":1,"sites\/all\/themes\/everywoman\/everywoman-internals\/css\/demo.css":1}}});</script>
+      <!--[if lt IE 9]>
+    <script src="/sites/all/themes/everywoman/js/html5-respond.js"></script>
+    <![endif]-->
+  </head>
+<body class="html front not-logged-in no-sidebars page-node" >
+      <p id="skip-link">
+      <a href="#main-menu" class="element-invisible element-focusable">Jump to navigation</a>
+    </p>
+      <script type="text/javascript">
+    $(function() {
+        fr = new FilmRoll({
+            container: '#film_roll',
+            height: 270,
+            animation: 200
+        });
+    });
+</script>
+<div id="wrapper">
+    <div class="headerOuter">
+    <div id="header">
+        <!--  <header class="header" id="header" role="banner">-->
+        <div class="topHeader clearfix">
+
+                        <a href="/" title="Home" rel="home"
+               class="header__logo siteLogo" id="logo"><img src="http://testing-ew.weboapps.com/sites/all/themes/everywoman/logo.png" alt="Home"
+                                                            class="header__logo-image"/></a>
+                                        <a href="/user/login" class="memberAreaWrap">MEMBERS AREA</a>
+                                    </div>
+        <div id="navigation" class="navAndSearchContent clearfix">
+
+                        <nav id="main-menu" role="navigation" tabindex="-1">
+                <ul class="menu"><li class="menu__item is-expanded first expanded"><a href="/" title="" class="menu__link active">Membership</a><ul class="menu"><li class="menu__item is-leaf first leaf"><a href="/network/register" title="" class="menu__link">ewNetwork</a></li>
+<li class="menu__item is-leaf leaf"><a href="/club/register" title="" class="menu__link">ewClub</a></li>
+<li class="menu__item is-leaf last leaf"><a href="/user/login" title="" class="menu__link">Corporate</a></li>
+</ul></li>
+<li class="menu__item is-leaf leaf"><a href="/events-comming-soon" title="" class="menu__link">Events</a></li>
+<li class="menu__item is-leaf last leaf"><a href="/awards-coming-soon" class="menu__link">awards</a></li>
+</ul>            </nav>
+            
+                        <div class="searchWrap">
+                <form>
+                    <input type="text" value="" class="filed">
+                    <input type="submit" class="searchBtn" value="submit">
+                </form>
+            </div>
+        </div>
+                <!--<nav class="header__secondary-menu" id="secondary-menu" role="navigation">-->
+        <div class="topRightLinks pull-right">
+<!--            -->
+            <!--</nav>-->
+        </div>
+        
+
+            
+        <!--  </header>-->
+    </div>
+    </div>
+
+    <div id="main" class="mainContent">
+          <div class="region region-banner">
+    
+
+<div class="bannerWrap">
+<div class="heading">
+<h3>Meet your goals and develop your skills on the everywoman network...<a href="/network/register">Join 40,000 other members today</a></h3>
+</div>
+<div id="film_roll">
+<div class="sliderWrap">
+<div class="blackOverLay">&nbsp;</div>
+<div class="bannerImg"><img alt="images One" src="/sites/all/themes/everywoman/everywoman-internals/images/bannerImg1.jpg" /></div>
+<div class="bannerContent">
+<div class="arrowHead">&nbsp;</div>
+<h2>Mine is a story of how friends and family pulled together to make it happen</h2>
+<div class="arrowhead">&nbsp;</div>
+<p>Mine is a story of how friends and family pulled together to make it happen</p>
+<p><a href="#" title="Read More">Read More</a></div>
+</div>
+<div class="sliderWrap">
+<div class="blackOverLay">&nbsp;</div>
+<div class="bannerImg"><img alt="images One" src="/sites/all/themes/everywoman/everywoman-internals/images/bannerImg2.jpg" /></div>
+<div class="bannerContent">
+<div class="arrowHead">&nbsp;</div>
+<h2>An insight into Building Strong Networks from everywomanClub </h2>
+<p>An insight into Building Strong Networks from everywomanClub Member Angela Wakelin</p>
+<p><a href="#" title="Read More">Read More</a></div>
+</div>
+<div class="sliderWrap">
+<div class="blackOverLay">&nbsp;</div>
+<div class="bannerImg"><img alt="images One" src="/sites/all/themes/everywoman/everywoman-internals/images/bannerImg1.jpg" /></div>
+<div class="bannerContent">
+<div class="arrowHead">&nbsp;</div>
+<h2>There's an adage that if you don't ask, you don't get</h2>
+<p>There's an adage that if you don't ask, you don't get. And accessing invaluable mentoring from experienced business leaders is no exception</p>
+<p><a href="#" title="Read More">Read More</a></div>
+</div>
+<div class="sliderWrap">
+<div class="blackOverLay">&nbsp;</div>
+<div class="bannerImg"><img alt="images One" src="/sites/all/themes/everywoman/everywoman-internals/images/bannerImg2.jpg" /></div>
+<div class="bannerContent">
+<div class="arrowHead">&nbsp;</div>
+<h2>An Insight into Giving and Receiving Feedback from everywomanClub</h2>
+<p>An Insight into Giving and Receiving Feedback from everywomanClub Member and Modern Muse Pippa Isbell</p>
+<p><a href="#" title="Read More">Read More</a></div>
+</div>
+</div>
+</div>
+
+  </div>
+        <div class="pageContainer">
+
+            <!--<div class="span3 leftSidebar">
+                    
+                                        <aside class="sidebars">
+                                                                    </aside>
+                                    </div>-->
+
+                        
+            <a id="main-content"></a>
+            
+                                                                        
+
+
+<article class="node-115 node node-page node-promoted node-teaser clearfix" about="/content/welcome-everywoman" typeof="foaf:Document">
+
+  
+  <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"> <p>welcome to everywoman</p>
+ </div></div></div>
+  <ul class="links inline"><li class="node-readmore first last"><a href="/content/welcome-everywoman" rel="tag" title="welcome to everywoman">Read more<span class="element-invisible"> about welcome to everywoman</span></a></li>
+</ul>
+  
+</article>
+
+<h3 class="block__title block-title">everywomanNetwork Topics</h3>
+
+<div class="view view-everywomannetwork-topics view-id-everywomannetwork_topics view-display-id-block view-dom-id-f79215822fa308ed99c1019fc86753f8">
+<div class="serachOuter">
+    <div class="greybg" style="background: #FAFAFA;">
+            </div>
+</div>
+
+
+<div class="netWorkContent">    <ul class="newsList">          <li class="">  
+          <a href="#" class="imgBox"> <img typeof="foaf:Image" src="http://testing-ew.weboapps.com/sites/default/files/styles/thumbnail/public/article-image/DSC_0064.jpg?itok=gNkV185K" width="100" height="75" alt="" /> </a>
+                            <div class="textWrap">
+                              <a href="/article/wcfb80v2oobca4om47asuqb6hn8gnrws11vw4qiqsllosq48adocjzppbhz4nsamoes4ognxnnxpidosvucit50dra"><a href="#">WCFB80v2ooBCa4OM47ASuqB6HN8gnrws11vw4q</a>
+                                <p>ch4svGiyLf vLVGsjg4IM bHAgonkyYk d1ETaXpH3E gRhic1eNN5
+                            </div>
+  </li>
+          <li class="">  
+          <a href="#" class="imgBox"> <img typeof="foaf:Image" src="http://testing-ew.weboapps.com/sites/default/files/styles/thumbnail/public/article-image/img.monogram.jpg?itok=2KnfcH8_" width="100" height="100" alt="" /> </a>
+                            <div class="textWrap">
+                              <a href="/article/test-3"><a href="#">test</a></a>
+                                <p>
+                            </div>
+  </li>
+          <li class="">  
+          <a href="#" class="imgBox"> <img typeof="foaf:Image" src="http://testing-ew.weboapps.com/sites/default/files/styles/thumbnail/public/article-image/hd-wallpaper-6-o-u-ibackgroundz-com_.jpg?itok=OYzuvC-f" width="100" height="56" alt="" /> </a>
+                            <div class="textWrap">
+                              <a href="/article/test-2"><a href="#">test</a></a>
+                                <p>
+                            </div>
+  </li>
+          <li class="">  
+          <a href="#" class="imgBox"> <img typeof="foaf:Image" src="http://testing-ew.weboapps.com/sites/default/files/styles/thumbnail/public/article-image/newsDefaultImg.jpg?itok=LY2B6hDl" width="100" height="30" alt="" /> </a>
+                            <div class="textWrap">
+                              <a href="/article/test-1"><a href="#">test</a></a>
+                                <p>
+                            </div>
+  </li>
+      </ul></div>
+
+
+
+
+
+</div>
+
+<h3 class="block__title block-title">Events &amp; awards</h3>
+
+<div class="view view-eventsawards view-id-eventsawards view-display-id-block view-dom-id-61a8c418d17564e8a52ed959b0f97e00">
+<div class="serachOuter">
+    <div class="greybg" style="background: #FAFAFA;">
+            </div>
+</div>
+
+
+<div class="eventAwardsContent">    <ul class="eventsList">          <li class="">  
+                                  <li>
+                            <div class="awardsTextWrap">
+                                <a href="#">everywoman in Transport &amp; Logistics Leadership Academy: 'Accelerate your career progression'</a>
+                            <span>10 September, Daventry Court Hotel, Northamptonshire</span>
+                        </div>
+                            <a href="#" class="register">Register Today</a>
+                        </li>
+                        <li>
+                            <div class="awardsTextWrap">
+                                <a href="#">everywoman in Advanced Manufacturing &amp; Engineering career Academy:</a>
+                                <span>10 September, Daventry Court Hotel, Northamptonshire</span>
+                            </div>
+                            <a href="#" class="register">Register Today</a>
+                        </li>
+                        <li>
+                            <div class="awardsTextWrap">
+                                <a href="#">everywoman in Transport &amp; Logistics Leadership Academy: 'Accelerate your career progression'</a>
+                                <span>10 September, Daventry Court Hotel, Northamptonshire</span>
+                            </div>
+                            <a href="#" class="register">Register Today</a>
+                        </li>
+                        <li>
+                            <div class="awardsTextWrap">
+                                <a href="#">everywoman in Advanced Manufacturing &amp; Engineering career Academy:</a>
+                                <span>10 September, Daventry Court Hotel, Northamptonshire</span>
+                            </div>
+                            <a href="#" class="register">Register Today</a>
+                        </li>
+  </li>
+      </ul></div>
+
+
+
+
+
+</div>
+
+<h3 class="block__title block-title">Testimonials</h3>
+
+<div class="view view-eventsawards view-id-eventsawards view-display-id-block_1 view-dom-id-cb967bd80fa2f26beb90c0e66e68fe2b">
+<div class="serachOuter">
+    <div class="greybg" style="background: #FAFAFA;">
+            </div>
+</div>
+
+
+<div class="testimonialsContent">    <ul class="testimonialList">          <li class="">  
+  <div class="views-field views-field-title">        <span class="field-content"><div class="userWrap">
+<a href="/testimonial/kbjoxpxlfu" class="imgBox"><img typeof="foaf:Image" src="http://testing-ew.weboapps.com/sites/default/files/styles/thumbnail/public/DSC_0064_2.jpg?itok=SLnThxYC" width="100" height="75" alt="" /></a>
+<div class="userDetail">
+                                    <strong>kBJOxpXlFU Br6ITy5ehF</strong>
+                                    <p>
+                                        <span>Ah9j5EPM1B</span>
+                                       TYsJMiz01a
+                                    </p>
+                                </div>
+     </div></span>  </div>  
+  <div class="views-field views-field-body-1">        <div class="field-content"><p><span class="arrow"></span> 9gSfhTed9G DwNxLSDcWv wdvqCHQk7X NE6jyubb0o G8HF4I9StO jcTGAmtRjM Tujcxaiixt lRnrcoD4iq bK1DHFRi2W
+&nbsp;
+ </p></div>  </div></li>
+          <li class="">  
+  <div class="views-field views-field-title">        <span class="field-content"><div class="userWrap">
+<a href="/testimonial/tttt" class="imgBox"><img typeof="foaf:Image" src="http://testing-ew.weboapps.com/sites/default/files/styles/thumbnail/public/butterflies_and_flowers-t2.jpg?itok=_rnb6XSz" width="100" height="65" alt="" /></a>
+<div class="userDetail">
+                                    <strong>tttt TestTest</strong>
+                                    <p>
+                                        <span>ttt</span>
+                                       tttt
+                                    </p>
+                                </div>
+     </div></span>  </div>  
+  <div class="views-field views-field-body-1">        <div class="field-content"><p><span class="arrow"></span> tttttttttttt
+ </p></div>  </div></li>
+          <li class="">  
+  <div class="views-field views-field-title">        <span class="field-content"><div class="userWrap">
+<a href="/testimonial/mt3ka1u3fo" class="imgBox"><img typeof="foaf:Image" src="http://testing-ew.weboapps.com/sites/default/files/styles/thumbnail/public/DSC_0064_1.jpg?itok=0caB5Nep" width="100" height="75" alt="" /></a>
+<div class="userDetail">
+                                    <strong>mT3Ka1u3FO 1aP5kbLJIP</strong>
+                                    <p>
+                                        <span>hjqUiIoVj6</span>
+                                       YpsPPMBl5J
+                                    </p>
+                                </div>
+     </div></span>  </div>  
+  <div class="views-field views-field-body-1">        <div class="field-content"><p><span class="arrow"></span> 7V8ibENQT1 3nzWBvNa97 4MWudjhj0t O4v2ioAFVM eDtrCORGWD a649jRJLc8 8pq2M2aFiP ppWo0dicV3 oTjY7YPo5F
+&nbsp;
+ </p></div>  </div></li>
+      </ul></div>
+
+
+
+
+
+</div>
+              <div class="region region-content-bottom">
+    
+
+<div class="partnerContent clearfix">
+<h3>Who We Work With</h3>
+<div class="partenrList">
+<ul>
+<li><a class="ciscoLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/cisco_logo.jpg" /></a></li>
+<li><a class="ftaLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/fta_logo.jpg" /></a></li>
+<li><a class="alcatelLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/alcatel_logo.jpg" /></a></li>
+<li><a class="whiteLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/white_company_logo.jpg " /></a></li>
+<li><a class="rbsLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/rbs_logo.jpg" /></a></li>
+<li><a class="fdmLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/fdm_logo.jpg" /></a></li>
+<li><a class="natLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/nat_west_logo.jpg" /></a></li>
+<li><a class="asdaLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/asda_logo.jpg" /></a></li>
+<li><a class="bpLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/bp_logo.jpg" /></a></li>
+<li><a class="bbcLogo" href="#"><img alt="" src="/sites/all/themes/everywoman/everywoman-internals/images/bbc_academy_logo.jpg" /></a></li>
+</ul>
+</div>
+</div>
+
+  </div>
+            
+
+
+        </div>
+    </div><!--close mainContent-->
+
+    <div id="footer">
+    <div class="container">
+        <div class="row">
+        <div class="span4">
+        
+
+<ul class="menu"><li class="menu__item is-leaf first leaf"><a href="/" title="" class="menu__link active">Home</a></li>
+<li class="menu__item is-leaf leaf"><a href="/club/register" title="" class="menu__link">ewClub</a></li>
+<li class="menu__item is-leaf leaf"><a href="/coming-soon" title="" class="menu__link">Modern Muse</a></li>
+<li class="menu__item is-leaf leaf"><a href="/network/register" title="" class="menu__link">ewNetwork</a></li>
+<li class="menu__item is-leaf leaf"><a href="/coming-soon" title="" class="menu__link">Articles</a></li>
+<li class="menu__item is-leaf leaf"><a href="/coming-soon" title="" class="menu__link">Ambition Hour</a></li>
+<li class="menu__item is-leaf leaf"><a href="/coming-soon" title="" class="menu__link">Corporate</a></li>
+<li class="menu__item is-leaf leaf"><a href="/coming-soon" title="" class="menu__link">Help</a></li>
+<li class="menu__item is-leaf leaf"><a href="/coming-soon" title="" class="menu__link">Events</a></li>
+<li class="menu__item is-leaf last leaf"><a href="/coming-soon" title="" class="menu__link">Contact</a></li>
+</ul>
+        </div>
+        <div class="span4">
+            <ul class="socialList">
+                <li><a href=""><i class="fbIcon"></i><span>Join us on Facebook</span></a></li>
+                <li><a href=""><i class="twitIcon"></i><span>Follow us on Twitter</span></a></li>
+                <li><a href=""><i class="linkdinIcon"></i><span>Connect on LinkedIn</span></a></li>
+                <li><a href=""><i class="youtubeIcon"></i><span>Our You Tube Channel</span></a></li>
+                <li><a href=""><i></i><span>Read our everywoman blog</span></a></li>
+                <li><a href=""><i></i><span>Read ourHuffington Post Blog</span></a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            <div class="footerNewsContent">
+                <p>Latest on the Huffington Post Blog:</p>
+                <a href="#">Lets'Go for Gold on Sporting Diversity</a>
+            </div>
+        </div>
+    </div>
+        <div class="footerBottom">
+                    <span class="copyText">&copy;2013 everywoman</span>
+                    <ul>
+                        <li><a href="/coming-soon">terms &amp; conditions</a></li>
+                        <li><a href="/coming-soon">help</a></li>
+                        <li><a href="/coming-soon">site map</a></li>
+                    </ul>
+                </div>
+    </div>
+</div>
+    <div class="clearfix"></div>
+
+</div>  <!--Close container class-->
+  </body>
+</html>

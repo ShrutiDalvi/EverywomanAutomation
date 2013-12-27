@@ -1,0 +1,2149 @@
+/*Common CSS*/
+@font-face {
+    font-family: 'merriweatherheavy';
+    src: url('../fonts/merriweather-black-webfont.eot');
+    src: url('../fonts/merriweather-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/merriweather-black-webfont.woff') format('woff'),
+         url('../fonts/merriweather-black-webfont.ttf') format('truetype'),
+         url('../fonts/merriweather-black-webfont.svg#merriweatherheavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'merriweatherbold';
+    src: url('../fonts/merriweather-bold-webfont.eot');
+    src: url('../fonts/merriweather-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/merriweather-bold-webfont.woff') format('woff'),
+         url('../fonts/merriweather-bold-webfont.ttf') format('truetype'),
+         url('../fonts/merriweather-bold-webfont.svg#merriweatherbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'merriweatherlight';
+    src: url('../fonts/merriweather-light-webfont.eot');
+    src: url('../fonts/merriweather-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/merriweather-light-webfont.woff') format('woff'),
+         url('../fonts/merriweather-light-webfont.ttf') format('truetype'),
+         url('../fonts/merriweather-light-webfont.svg#merriweatherlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'merriweatherregular';
+    src: url('../fonts/merriweather-regular-webfont.eot');
+    src: url('../fonts/merriweather-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/merriweather-regular-webfont.woff') format('woff'),
+         url('../fonts/merriweather-regular-webfont.ttf') format('truetype'),
+         url('../fonts/merriweather-regular-webfont.svg#merriweatherregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body,
+html {
+    min-height: 100%;
+    height: 100%;
+}
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    min-height: 273px;
+    background: #512654;
+    width: 100%;
+    padding: 50px 0 0;
+}
+#main {
+    padding-bottom: 323px;
+}
+body {
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    line-height: 20px;
+    background: #ffffff
+}
+a, a:hover, a:active, a:focus {
+    color: #9A5AA4;
+    vertical-align: middle;
+    outline: none;
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: underline
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+h1 {
+    font-size: 36px;
+    line-height: 38px;
+}
+h2 {
+    font-size: 30px;
+    line-height: 32px;
+}
+h3 {
+    font-size: 20px;
+    line-height: 24px;
+}
+h4 {
+    font-size: 18px;
+    line-height: 22px;
+}
+select {
+    border-radius: 0;
+}
+#header {
+    width: 980px;
+    margin: 0 auto;
+}
+#header .topHeader {
+    margin-bottom: 47px;
+    padding-top: 18px;
+}
+.topHeader .siteLogo  {
+    width: 220px;
+    float: left;
+}
+.topHeader .memberAreaWrap {
+    background: #bf82b9;
+    /*width: 124px;*/
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    float: right;
+    font-size: 15px;
+    color: #ffffff;
+    border-radius: 3px;
+    margin-top: 22px;
+    padding: 0 10px;
+}
+.topHeader .memberAreaWrap:hover {
+    background: #B774C1
+}
+.navAndSearchContent {
+    margin: 0 0 9px;
+}
+.navAndSearchContent ul.nav,
+.navAndSearchContent ul.menu {
+    margin: 0;
+    float: left;
+}
+/**
+For Sub Navigation menu chage
+*/
+#main-menu li {
+    display: inline-block;
+    position: relative;
+    padding: 0px 20px 20px;
+}
+.navAndSearchContent li:first-child {
+    padding-left: 0;
+}
+.navAndSearchContent li  {
+    background: url("/sites/all/themes/everywoman/everywoman-internals/images/divider.png") 0 2px no-repeat;
+}
+.navAndSearchContent li:first-child,
+.navAndSearchContent li li{
+    background: none
+}
+#main-menu .menu {
+    font-family: 'Trebuchet ms';
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+#main-menu .menu a {
+    color: #512654;
+    border-bottom: solid 2px #fff;
+
+}
+#main-menu .menu a:hover, #main-menu .menu a.active {
+    background: none;
+    color: #bf82b9;
+    border-bottom: solid 2px #9b5ba4;
+    text-decoration: none;
+}
+ul.menu ul.menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    border: solid 2px #9b5ba4;
+    z-index: 100;
+    left: 0;
+    width: 185px;
+}
+#main-menu .menu li li {
+    background: #ffffff;
+    border-bottom: solid 1px #f0eee8;
+    padding: 10px 0;
+    display: block;
+    float: none;
+}
+ul.menu ul.menu a {
+    font-weight: normal;
+    color: #9959a4;
+    margin: 0 10px;
+    text-transform: none;
+}
+ul.menu ul.menu:after {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: -10px;
+    border-left: 8px solid rgba(0, 0, 0, 0);
+    border-right: 8px solid rgba(0, 0, 0, 0);
+    border-bottom: 8px solid #9b5ba4;
+}
+ul.menu li:hover ul.menu {
+    display: block;
+}
+/** End**/
+.searchWrap {
+    float: right;
+    margin-top: -8px;
+    width: 254px;
+}
+.searchWrap .filed {
+    width: 208px;
+    border: solid 1px #dcdad4;
+    border-right: none;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    padding: 4px 6px;
+    box-shadow: none;
+    font-weight: normal;
+    font-size: 16px;
+    float: left;
+}
+.searchWrap input[type="text"]:focus {
+    border-color: #BF82B9;
+    box-shadow: none;
+}
+.searchWrap .searchBtn {
+    background: #BF82B9 url(/sites/all/themes/everywoman/everywoman-internals/images/sprite.png) -32px -43px no-repeat;
+    border-radius: 0 10px 0 0;
+    width: 32px;
+    height: 32px;
+    float: left;
+    text-indent: -9999px;
+    border: none;
+    padding: 0;
+}
+.searchWrap .searchBtn:hover {
+    background-color: #B774C1;
+}
+
+/*mainContent start here*/
+.bannerWrap {
+    margin-bottom: 30px;
+}
+.bannerWrap .heading {
+    width: 980px;
+    margin: 0 auto;
+}
+.heading h3 {
+    font-family: 'merriweatherlight';
+    font-size: 18px;
+    color: #666666;
+    margin: 0 0 27px;
+}
+.heading h3 a {
+    color: #9b5ba4;
+    text-decoration: underline;
+    text-align: right;
+    float: right;
+}
+/*pageContainer start here*/
+.pageContainer {
+    width: 980px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+.pageContainer h3 {
+    font-family: 'merriweatherheavy';
+    font-size: 20px;
+    color: #512652;
+    margin:0 0 24px 20px;
+}
+/*netWorkContent*/
+.testimonialsContent {
+    margin-bottom: 60px;
+    overflow: hidden;
+}
+.netWorkContent {
+    margin-bottom: 60px;
+}
+.netWorkContent ul.newsList,
+.eventAwardsContent ul.eventsList,
+ul.testimonialList,
+.partenrList ul,
+#footer ul.menu,
+ul.socialList {
+    margin: 0;
+}
+.netWorkContent .newsList li,
+.eventAwardsContent .eventsList li,
+.testimonialList li  {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px 18px 20px 30px;
+    border-bottom: solid 1px #f0eee8;
+    width: 438px;
+    float: left;
+}
+.netWorkContent .newsList {
+    overflow: hidden;
+}
+.netWorkContent .newsList li {
+    border-left: solid 1px #f0eee8;
+    margin-left: -1px;
+    min-height: 100px;
+}
+.newsList .imgBox, .testimonialList .imgBox {
+    width: 110px;
+    float: left;
+}
+.newsList .textWrap {
+    width: 300px;
+    float: left;
+    margin: 0 0 0 20px;
+}
+.newsList .textWrap a {
+    font-family: 'merriweatherregular';
+    font-size: 20px;
+    line-height: 24px;
+    color: #9959a4;
+    display: block;
+    margin-bottom: 6px;
+}
+ul.newsList .textWrap p, .awardsTextWrap a, ul.testimonialList li p  {
+    font-size: 16px;
+    color: #777777;
+    margin: 0;
+    padding-top: 20px;
+}
+ul.newsList .textWrap p {
+    padding-top: 0;
+}
+/*eventAwardsContent*/
+.eventAwardsContent ul.eventsList li {
+    width: 184px;
+    padding: 0 30px 20px;
+    border-left: solid 1px #f0eee8;
+    min-height: 186px;
+    margin-left: -1px
+}
+ul.eventsList li:first-child, ul.testimonialList li:first-child {
+    border-left: 0;
+}
+.awardsTextWrap {
+    min-height: 150px;
+}
+.awardsTextWrap a {
+    color: #9a5aa4;
+    margin-bottom: 15px;
+    display: block;
+    padding-top: 0;
+    font-weight: bold;
+}
+.awardsTextWrap a:hover {
+    text-decoration: none;
+    color: #B774C1;
+}
+.awardsTextWrap span {
+    font-size: 14px;
+    color: #666666;
+}
+.eventsList a.register {
+    text-transform: uppercase;
+    display: block;
+    margin-top: 10px;
+}
+
+/*testimonialsContent*/
+ul.testimonialList li {
+    width: 260px;
+    min-height: 280px;
+    padding:0 30px 20px 30px;
+    border-left: solid 1px #f0eee8;
+}
+ul.testimonialList {
+    padding-top: 30px;
+}
+
+ul.testimonialList  p {
+    border-top: solid 1px #f0eee8;
+    position: relative;
+}
+ul.testimonialList .userDetail p {
+    padding-top: 5px;
+    line-height: 18px;
+}
+ul.testimonialList  p .arrow {
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/testimonial_arrow.png) no-repeat;
+    height: 10px;
+    width: 19px;
+    position: absolute;
+    top: -10px;
+    left: 40px;
+}
+.userWrap {
+    margin: 0 0 20px;
+    overflow: hidden;
+}
+ul.testimonialList .userDetail {
+    width: 130px;
+    float:left;
+    margin: 0 0 0 20px;
+}
+.userDetail strong, .userDetail p {
+    font-family: 'Trebuchet MS';
+    font-size: 19px;
+    color: #333333;
+    margin: 0 0 10px 0;
+    display: block;
+}
+.testimonialList .userDetail p, .userDetail p span {
+    font-weight: bold;
+    font-size: 16px;
+    color: #9b5ba4;
+    border: 0px;
+    border-top: solid 1px #f0eee8;
+    margin: 3px 0 0;
+}
+.userDetail p span {
+    font-size: 12px;
+    display: block;
+    border-top: none;
+}
+
+/*partnerContent*/
+.partnerContent h3 {
+    margin: 0 0 -26px 0;
+}
+.partenrList {
+    float: left;
+    width: 100%;
+}
+.partenrList ul{
+    border-bottom: solid 1px #f0eee8;
+    margin: 0 0 40px;
+    float: left;
+    width: 100%;
+    clear: both;
+}
+.partenrList li {
+    float: left;
+    list-style: none;
+    min-height: 127px;
+}
+.partenrList a {
+    float: left;
+}
+.partenrList a.ciscoLogo {
+    margin: 0 0 0 310px;
+}
+.partenrList a.ftaLogo {
+    margin: 0 0 0 80px;
+}
+.partenrList a.alcatelLogo {
+    margin: -10px 0 0 80px;
+}
+.partenrList a.whiteLogo {
+    margin: 13px 0 10px 60px;
+}
+.partenrList a.rbsLogo {
+    margin: 10px 0 0 20px;
+}
+.partenrList a.fdmLogo {
+    margin: 0 0 0 57px;
+}
+.partenrList a.natLogo {
+    margin: 9px 0 0 42px;
+}
+.partenrList a.asdaLogo {
+    margin: 0 0 0 66px;
+}
+.partenrList a.bpLogo {
+    margin: -20px 0 0 75px;
+}
+.partenrList a.bbcLogo {
+    margin: 10px 0 0 52px;
+}
+
+/*shareContent*/
+.shareContent {
+    margin: 0 22px 50px;
+    overflow: hidden;
+}
+.shareContent p {
+    font-family: 'merriweatherregular';
+    font-size: 17px;
+    line-height: 26px;
+    color: #512654;
+}
+/*Registration page start here-------*/
+.registrationStepContent {
+    width: 655px;
+    float: left;
+    margin-right: 25px;
+}
+.registrationStepContent h1 {
+    font-family: 'merriweatherlight';
+    font-size: 40px;
+    line-height: 48px;
+    color: #512654;
+    border-bottom: solid 1px #f0eee8;
+    margin: 0 0 10px;
+    padding-bottom: 5px;
+    padding-top: 20px;
+}
+.registrationStepContent p {
+    font-size: 16px;
+    color: #7a7a7a;
+    margin: 0 0 61px 0;
+}
+.registrationStepContent h2 {
+    font-family: 'merriweatherlight';
+    font-size: 26px;
+    color: #512654;
+    margin-bottom: 12px;
+}
+input[type="password"], input[type="text"], textarea, select {
+    height: 46px;
+    line-height: 46px\9;
+    padding: 0px 6px;
+    border: solid 2px #e1dfd9;
+    border-radius: 0;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 18px;
+    color: #777777;
+    margin: 0 0 4px 0;
+}
+select option:first-child {
+    color: #b5b5ba
+}
+/*custom select---*/
+.custom-select select,
+select.cstSelList {
+    position: relative;
+    z-index: 10;
+    margin-right: 5px;
+    height: 50px;
+    padding: 0;
+}
+.form-type-select {
+    position: relative;
+}
+.cstSelList:focus + span.selText {
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+}
+span.selText {
+    float: left;
+    position: absolute;
+    left: 0;
+    text-indent: 10px;
+    cursor: default;
+    z-index: 1;
+    border: 2px solid #E1DFD9;
+    font: 18px Arial, Verdana,sans-serif;
+    color: #777777;
+    height: 46px;
+    line-height: 46px;
+    width: 100%;
+    top:0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+span.selText.placeholderTxt{
+    color: #c0b5b5;
+}
+.dropArrow {
+    background: url("/sites/all/themes/everywoman/everywoman-internals/images/drop-down1.png") no-repeat center right;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    right: -2px;
+    top: 2px;
+    z-index: 1;
+    width: 33px;
+    height: 46px;
+}
+body input.ErrorField,
+body textarea.ErrorField,
+select.ErrorField + .selText,
+select.ErrorField + .ValidationErrors + .selText,
+body select.ErrorField {
+    border-color: red;
+}
+#form-item-country-id span.selText {
+    width: 200px;
+}
+textarea {
+    min-height: 138px;
+    resize: none;
+}
+.nameGroup span.selText  {
+    /*width: 122px;*/
+}
+.postCodeGroup span.selText {
+    width: 178px;
+}
+.dateSel span.selText, .monthSel span.selText, .yearSel span.selText {
+    /*width: 88px;*/
+}
+.ewClubSel span.selText {
+    /*width: 328px;*/
+}
+.ewClubForm .personalDetailsWrap, .ewClubForm .organisationDetailsWrap {
+    margin-bottom: 40px;
+}
+
+.ewClubForm .filed {
+    width: 200px;
+}
+.ewClubForm .width90 {
+    width: 90px;
+}
+.ewClubForm .width120 {
+    width: 120px;
+}
+.ewClubForm .width140 {
+    width: 140px;
+}
+.ewClubForm .width180 {
+    width: 180px;
+}
+
+.ewClubForm .width220 {
+    width: 220px;
+}
+
+.ewClubForm .width250 {
+    width: 250px;
+}
+.ewClubForm .width330 {
+    width: 330px;
+}
+.ewClubForm .width350 {
+    width: 350px;
+}
+.ewClubForm .width500 {
+    width: 500px;
+}
+
+.tellAboutWrap .controlsGroup .redioWrap .custom-radio {
+    float: left;
+}
+.tellAboutWrap .redioWrap {
+    width: 500px;
+    overflow: hidden;
+}
+.ewClubForm  label, .ewClubForm legend {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    color: #666666;
+}
+.ewClubForm legend {
+    border: 0px;
+    margin: 0;
+}
+.marBot20 {
+    margin-bottom: 20px;
+}
+.btnWrap {
+    margin: 20px 0;
+    overflow: hidden;
+}
+.subBtn {
+    background: #9b5ba4;
+    width: 135px;
+    text-align: center;
+    border: 0px;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: none;
+}
+.cancelLink, .cancelLink:hover {
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    color: #9b5ba4;
+    margin-left: 20px;
+}
+
+a.subBtn:hover {
+    color: #fff;
+    background: #B774C1;
+    text-decoration: none;
+}
+.rightSideContent {
+    width: 270px;
+    float: right;
+    padding-left: 29px;
+    border-left: solid 1px #f0eee8;
+}
+.rightSideContent .aboutEwTextBox {
+    margin-bottom: 60px;
+}
+.rightSideContent h3 {
+    margin: 0 0 30px 0;
+}
+.rightSideContent p {
+    font-size: 16px;
+    color: #666666;
+}
+.ewClubTestimonial ul.testimonialList li{
+    border: 0px;
+    margin: 0 0 50px;
+    padding: 0;
+}
+/*footer start here-------------------*/
+#footer .menu, ul.socialList, .footerNewsContent {
+    background: #562c59;
+    padding: 10px 15px;
+    min-height: 150px;
+}
+ul.socialList {
+  padding-left: 18px;
+}
+ul.socialList li:first-child {
+    margin-top: 3px;
+}
+#footer .menu li {
+    display: inline-block;
+    list-style-type: none;
+    width: 132px;
+    margin: 0 ;
+    vertical-align: top;
+    padding: 0;
+}
+#footer .menu a, ul.socialList a {
+    font-size: 13px;
+    color: #d6d0d6;
+    font-weight: bold;
+}
+#footer .menu a:hover, ul.socialList a:hover span {
+    text-decoration: underline
+}
+#footer .menu li{
+    padding: 0px;
+    margin-bottom: 5px;
+}
+
+#main-menu li:first-child {
+    padding-left: 0;
+}
+ul.socialList li {
+    display: block;
+    list-style-type: none;
+    margin: 0 0 4px;
+    overflow: hidden;
+}
+ul.socialList i {
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+.fbIcon, .twitIcon, .linkdinIcon, .youtubeIcon {
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/social_icons.png) no-repeat 0 0;
+}
+.twitIcon {
+    background-position: 0px -24px;
+}
+.linkdinIcon {
+    background-position: 0 -49px;
+}
+.youtubeIcon {
+    background-position: 0 -74px;
+}
+ul.socialList span {
+    float: left;
+    margin-left: 10px;
+}
+
+.footerNewsContent {
+    padding-left: 26px;
+    padding-right: 26px;
+}
+.footerNewsContent p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 4px;
+}
+.footerNewsContent a {
+    font-family: 'merriweatherregular';
+    font-size: 28px;
+    line-height: 34px;
+    color: #ffffff;
+
+}
+.footerNewsContent a:hover {
+    text-decoration: none;
+}
+#film_roll .film_roll_child {
+    vertical-align: top !important;
+}
+.bannerContent h2 {
+    color: #FFFFFF;
+    font-family: 'merriweatherlight';
+    font-size: 25px;
+    line-height: 30px;
+    background: #bf82b9;
+    margin: 0 0 17px 0;
+    padding: 10px 5px 10px 30px;
+    position: relative;
+}
+.bannerContent {
+    width: 410px;
+    padding-right: 80px;
+    float: right;
+    padding-top: 21px;
+    min-height: 249px;
+    position: relative;
+}
+.bannerContent p {
+    color: #777777;
+    font-family: 'Trebuchet ms';
+    font-size: 16px;
+    padding: 11px 20px 0 30px;
+    margin: 0;
+}
+.bannerContent a {
+    color: #9B5BA4;
+    font-family: 'Trebuchet ms';
+    font-size: 14px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.sliderWrap {
+    width: 980px;
+    background: #f0eee8;
+    position: relative;
+}
+.bannerImg {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.film_roll_prev, .film_roll_next {
+    background: url(../images/sprite.png) -27px 0 no-repeat !important;
+    width: 0 !important;
+    padding-left: 25px !important;
+    height: 43px !important;
+    border: none !important;
+    z-index: 1111;
+    overflow: hidden;
+    opacity: 1 !important;
+    margin-top: -21px !important;
+}
+.film_roll_prev {
+    left: -44px !important;
+}
+.film_roll_next {
+    background-position: 0 0 !important;
+    right: -44px !important;
+}
+.blackOverLay {
+    background: #000;
+    opacity: 0.8;
+    filter:alpha(opacity=80);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 270px;
+    z-index: 1
+}
+.active .blackOverLay {
+    display: none;
+}
+.film_roll_pager a {
+    border-radius: 0 !important;
+    border: none !important;
+    height: 10px !important;
+    width: 10px !important;
+    background: #999 !important;
+}
+.film_roll_pager a:focus {
+    outline: none;
+}
+.film_roll_pager a.active {
+    background: #ccc !important;
+}
+.film_roll_pager {
+    padding-top: 15px;
+}
+.arrowHead {
+    position: absolute;
+    background: url(../images/sprite.png) 0 -47px no-repeat ;
+    width: 30px;
+    left: -30px;
+    top: 22px;
+    position: absolute;
+    float: left;
+    height: 52px;
+}
+/*DEV CSS*/
+.node-promoted{
+    display:none;
+}
+p#skip-link {
+    margin: 0
+}
+.searchWrap form {
+    margin: 0;
+}
+.headerOuter {
+    border-bottom: 1px solid #F0EEE8;
+}
+.regTopText {
+    color: #7A7A7A;
+    font-size: 16px;
+    margin: 0 0 60px;
+
+}
+#film_roll .film_roll_wrapper {
+    width: 980px !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+}
+#film_roll {
+    overflow: hidden;
+    height: 305px;
+}
+.pageContainer h3.block-title {
+    margin-left: 30px;
+}
+.eventAwardsContent ul.eventsList {
+    color: #666;
+    padding-top:20px;
+    overflow: hidden;
+}
+.eventAwardsContent {
+    margin-bottom: 47px;
+}
+.eventsList .views-field-title {
+    padding-bottom: 15px;
+}
+.eventsList .views-field-body {
+    min-height: 80px;
+}
+.testimonialList .views-field-title {
+    min-height: 119px
+}
+
+.footerBottom {
+    margin-top: 40px;
+    border-top: 1px solid #745176;
+    color: #a893aa;
+    font-size: 12px;
+    line-height: 14px;
+    padding-top: 12px;
+    padding-bottom: 20px;
+    margin-left: -20px;
+    width: 100%;
+    padding-right: 40px;
+}
+.footerBottom ul {
+    display: inline;
+    margin: 0;
+}
+.footerBottom a {
+    color: #a893aa;
+    vertical-align: top;
+}
+.footerBottom li {
+    display: inline;
+    list-style: none;
+    border-left: 1px solid #937894;
+    padding: 0 3px 0 5px;
+}
+.copyText {
+    padding-right: 3px;
+}
+.userDetail strong {
+    width: 100px;
+    min-height: 40px;
+}
+
+/**right side bar**/
+.rightSideContent .testimonialList .imgBox {
+    float: left;
+    height: 110px;
+    width: 110px;
+}
+.rightSideContent .testimonialList ul {
+    margin: 0;
+    list-style: none;
+}
+
+.rightSideContent .testimonialList .userDetail {
+    float: left;
+    margin: 0 0 0 20px;
+    width: 125px;
+}
+.rightSideContent .testimonialList .userDetail p {
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    color: #9B5BA4;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0 0;
+}
+.rightSideContent .userDetail p span {
+    border-top: 0 solid;
+    display: block;
+    font-size: 12px;
+}
+.btnWrap .subBtn,
+.controls .blueBtn,
+.btnWrap .form-submit {
+    background: #9B5BA4;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+    padding: 10px 20px;
+    text-shadow: none;
+}
+.controls .grayBtn {
+    background: none;
+    border: none;
+    color: #9B5BA4;
+    font-family: 'Trebuchet MS';
+    font-size: 18px;
+}
+.controls .grayBtn:hover {
+    text-decoration: underline;
+}
+.updateBtn {
+    background: #9B5BA4;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-family: 'Trebuchet MS';
+    font-size: 14px;
+    border: none;
+    padding: 8px 6px 8px 10px;
+    text-align: center;
+    text-shadow: none;
+    font-weight: bold;
+}
+.updateBtn i {
+    background: url("/sites/all/themes/everywoman/everywoman-internals/images/sprite.png") -39px -82px no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+.updateBtn:hover {
+    background-color: #B774C1;
+    color: #fff;
+}
+/****Temp css for article page*****/
+.node-type-article .field .field-label {
+    float: left;
+    width: 160px;
+    font-weight: normal;
+    color: #777;
+}
+.node-type-article .field .field-items {
+    margin-left: 160px;
+}
+.node-type-article .field  {
+    padding-bottom: 10px;
+}
+.node-type-article .field-type-text-with-summary  .field-items {
+    margin-left: 0
+}
+.node-type-article .node-article {
+    padding-bottom: 30px;
+}
+.placeholder {
+    position: relative;
+}
+.placeholder .placeholder_span {
+    position: absolute;
+    left: -10px;
+    top: 15px;
+    font-size: 18px;
+    color: #c0b5b5;
+}
+.pageContainer form {
+    margin: 0;
+}
+.tellAboutWrap,
+.personalDetailsWrap,
+.form-item-referral-member-id,
+.organisationDetailsWrap{
+    margin-bottom: 29px;
+}
+.registrationStepContent  .organisationDetailsWrap h2,
+.registrationStepContent  .tellAboutWrap  h2 {
+    margin-bottom: 18px;
+}
+.tellAboutWrap .controlsGroup {
+    padding-bottom: 12px;
+}
+.tellAboutWrap .redioWrap .controlsGroup  {
+    padding-bottom: 0;
+}
+.searchWrap .placeholder_span {
+    display: none !important;
+}
+.padZero .form-item {
+    padding: 0;
+}
+.padZero .custom-radio label{
+    margin-bottom: 0
+}
+.form-item {
+    float: left;
+    margin-right: 8px;
+    padding-bottom: 4px;
+}
+.form-item-pin-code input[type="text"] ,
+.form-item-salutation{
+    width: 132px;
+    margin-right: 12px;
+}
+.form-item-mobile{
+    padding-bottom: 14px;
+}
+.btnWrap a {
+    display: inline-block;
+}
+.sliderWrap {
+    float: left;
+}
+.messages.error {
+    color: red;
+}
+.messages.error ul {
+    margin: 0;
+    list-style: none;
+}
+.pageContainer .leftSidebar h3.block-title {
+    margin-left: 0;
+}
+.leftSidebar .menu {
+    margin: 0;
+}
+.leftSidebar .menu li{
+    padding: 5px 0;
+    display: block;
+
+}
+.views-table {
+    margin-bottom: 20px;
+    width: 100%;
+}
+.views-table th, .views-table td {
+    border-top: 1px solid #DDDDDD;
+    line-height: 20px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+.views-table th {
+    font-weight: bold;
+    border-top: none;
+}
+#messaging-form .text-format-wrapper {
+    width: 100%;
+    float: left;
+}
+#messaging-form .btnWrap {
+    float: left;
+}
+.views-field-title a {
+    display: block;
+    word-break: break-all;
+}
+div.autocomplete-deluxe-container input.autocomplete-deluxe-form {
+    height: auto;
+}
+div.autocomplete-deluxe-multiple {
+    padding-bottom: 0;
+}
+.node-blog  .field-label {
+    float: left;
+    width: 160px
+}
+.node-blog  .field-items {
+    margin-left: 180px;
+    float: none;
+}
+.node-blog  .field {
+    padding-bottom: 10px;
+}
+.noPad {
+    padding: 0 !important;
+}
+.boxAction #closeBox {
+    display: inline-block;
+    margin: 10px 0 0 10px;
+}
+.pageContainer .user-dashbord h3 {
+    margin-left: 0;
+}
+.btnWrap .cancelLink {
+    background: none;
+    padding: 0;
+    color: #9b5ba4;
+}
+.btnWrap .cancelLink:hover {
+    text-decoration: underline;
+}
+.form-item-pin-code {
+    width: 185px;
+}
+.controlsGroup {
+    float: left;
+    width: 100%;
+}
+.form-item-first-name input[type="text"],
+.form-item-phone input[type="text"],
+.form-item-mobile input[type="text"],
+.form-item-number-of-staff input[type="text"],
+.form-item-member-team-size input[type="text"],
+.form-item-last-name input[type="text"] {
+    width: 186px;
+}
+.form-item-salutation select {
+    width: 125px;
+}
+
+.form-item-country-id select {
+    width: 178px;
+}
+.form-item-email input[type="text"] {
+    width: 236px;
+}
+.form-item-address-1 input[type="text"] {
+    width: 314px;
+}
+.form-item-job-title input[type="text"] {
+    width: 170px;
+}
+.form-item-industry input[type="text"]{
+    width: 236px;
+}
+.form-item-establishment-year select {
+    width: 202px;
+}
+.organisationDetailsWrap select.cstSelList,
+.tellAboutWrap select.cstSelList,
+.personalDetailsWrap select.cstSelList {
+    margin-right: 0;
+}
+#comment-form .form-item {
+    float: none;
+}
+.registrationStepContent label {
+    color: #777;
+    font-size: 17px;
+    font-family: arial;
+}
+.tellAboutWrap select{
+    width: 109px;
+}
+.form-textarea-wrapper textarea {
+    margin-bottom: 4px;
+}
+.grippie {
+    display: none;
+}
+.redioWrap .controlsGroup {
+    width: 40%;
+}
+.redioWrap .controlsGroup:first-child {
+    width: 55%;
+}
+.form-item-source-of-ewclub-info input[type="text"]{
+    width: 316px;
+}
+.form-item-referral-member-id input[type="text"]{
+    width: 350px;
+}
+.tellAboutWrap .controlsGroup .redioWrap {
+    width: 100%;
+}
+.form-submit {
+    background: #BF82B9;
+    border: none;
+    font-size: 15px;
+    color: #FFF;
+    border-radius: 3px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.form-submit:hover {
+    background: #B774C1
+}
+input[type="text"]:-moz-placeholder {
+    color: #C0B5B5;
+}
+input[type="text"]:-ms-input-placeholder {
+    color: #C0B5B5;
+}
+input[type="text"]::-webkit-input-placeholder {
+    color: #C0B5B5;
+}
+.testimonialsContent .field-content {
+    display: block;
+    /*overflow: hidden;*/
+}
+.mainContent {
+    margin-top: 26px
+}
+.subMenu {
+    margin: 0 auto;
+    width: 980px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.subMenu ul {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+}
+.subMenu ul.inline li {
+    list-style: none;
+    float: left;
+    padding: 0;
+}
+.subMenu ul.inline li.last {
+    float: right;
+}
+.subMenu li:first-child a {
+    padding-left: 0;
+}
+.subMenu a {
+    color: #512652;
+    display: block;
+    padding: 13px 9px 13px 13px;
+    height: 18px;
+}
+.subMenu ul.inline li.last a {
+    padding-right: 5px;
+}
+.subMenu a:before {
+    content: " ";
+    display: inline-block;
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/sprite.png) -33px -103px no-repeat;
+    height: 18px;
+    width: 25px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+.subMenu a.active,
+.subMenu a:hover {
+    text-decoration: none;
+    color: #9b5ba4;
+}
+.subMenu a:hover:before {
+    background-position: 0 -103px;
+}
+.subMenu a.active {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 6px solid #bf82b9;
+}
+.subMenu a.active:before {
+    background-position: 0 -103px;
+}
+.subMenu .menu-518 a:before {
+    background-position: -33px -122px;
+}
+.subMenu .menu-518 a.active:before,
+.subMenu .menu-518 a:hover:before {
+    background-position: 0 -122px;
+}
+.subMenu .menu-519 a:before {
+    background-position: -31px -141px;
+}
+.subMenu .menu-519 a.active:before,
+.subMenu .menu-519 a:hover:before {
+    background-position: 0 -141px;
+}
+.subMenu .menu-523 a:before {
+    background-position: -31px -160px;
+    margin-top: -2px;
+    height: 21px;
+}
+.subMenu .menu-523 a.active:before,
+.subMenu .menu-523 a:hover:before {
+    background-position: 0 -160px;
+}
+.subMenu .menu-524 a:before {
+    background-position: -30px -183px;
+    width: 28px;
+}
+.subMenu .menu-524 a.active:before,
+.subMenu .menu-524 a:hover:before {
+    background-position: 0 -183px;
+}
+.subMenu .menu-525 a:before {
+    background-position: -33px -204px;
+}
+.subMenu .menu-525 a.active:before,
+.subMenu .menu-525 a:hover:before {
+    background-position: 0 -204px;
+}
+.subMenu .menu-526 a:before {
+    background-position: -32px -225px;
+    height: 20px;
+    width: 22px;
+}
+.subMenu .menu-526 a.active:before,
+.subMenu .menu-526 a:hover:before {
+    background-position: 0 -225px;
+}
+.subMenu .menu-527 a:before {
+    background-position: -32px -249px;
+    width: 28px;
+}
+.subMenu .menu-527 a.active:before,
+.subMenu .menu-527 a:hover:before {
+    background-position: 0 -249px;
+}
+.subMenu .menu-528 a:before {
+    background-position: -33px -269px;
+    height: 21px;
+}
+.subMenu .menu-528 a.active:before,
+.subMenu .menu-528 a:hover:before {
+    background-position: 0 -269px;
+}
+.tabs {
+    font-size: 19px;
+    padding-top: 28px;
+}
+.tabs .nav-tabs a {
+    color: #fff;
+    background: #bf82b9 url(/sites/all/themes/everywoman/everywoman-internals/images/tabbg2.png) 0 0 repeat-y;
+    margin-right: 0;
+    font-weight: normal;
+    border-radius: 0;
+    border: none;
+    width: 175px;
+    text-align: center
+}
+.nav-tabs li:first-child a {
+    background-image: url(/sites/all/themes/everywoman/everywoman-internals/images/tabbg1.png);
+    background-repeat: repeat-y;
+    background-position: 100% 0;
+}
+.tabs .nav-tabs li:first-child a {
+    width: 205px;
+    text-align: left;
+}
+.tabs .nav-tabs .active {
+    border-top: 6px solid #b073aa;
+    margin-top: -15px;
+}
+.tabs .nav-tabs .active a,
+.tabs .nav-tabs .active a:hover {
+    background-image: none;
+    background-color: #fff;
+    border: none;
+    color: #333333;
+    padding-top: 13px;
+    padding-bottom: 13px;
+
+}
+.tabs .nav-tabs a:focus,
+.tabs .nav-tabs a:hover {
+    text-decoration: none;
+    background-color: #B774C1;
+}
+
+.feildLink .form-item,
+.personalInfo,
+#linked-area {
+    float: left;
+}
+.pofileImage {
+    width: 115px;
+    float: left;
+    overflow: hidden;
+    margin-right: 60px;
+    min-height: 150px;
+    margin-top: 15px;
+}
+#ew-network-profile-form input[type="text"] {
+    background: #bf81b8;
+    border-color: #bf81b8;
+    width: 286px;
+    color: #fff;
+}
+#linked-area a {
+    float: left;
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/sprite.png) -20px -295px no-repeat;
+    padding: 6px 0 9px 50px;
+    margin-left: 20px;
+    margin-top: 6px;
+}
+.form-item-profile-description {
+    float: none;
+    width: 503px;
+}
+.viewSetting {
+    width: 210px;
+}
+.viewSetting  .form-type-checkbox {
+    position: relative;
+}
+.pageContainer .columOuter h3 {
+    margin-left: 0;
+    margin-bottom: 42px;
+}
+.socialNet {
+    width: 330px;
+    margin-right: 40px;
+}
+.jobDetails {
+    width: 253px;
+    margin-right: 100px;
+}
+#ew-network-profile-form label,
+.viewSetting p {
+    color: #777777;
+    font-size: 17px;
+    font-family: arial;
+
+}
+#ew-network-profile-form .columOuter input[type="text"] {
+    width: 238px;
+    box-shadow: none;
+}
+.socialNet .form-item:before,
+.socailLink span {
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/sprite.png) -20px -295px no-repeat;
+    height: 35px;
+    width: 35px;
+    float: left;
+    content: " ";
+    margin-right: 15px;
+    margin-top: 8px;
+}
+.socailLink span {
+    float: none;
+    display: inline-block;
+    margin-top: 0;
+    vertical-align: middle;
+}
+.socailLink span.twiterIcn,
+.socialNet .form-item-twitter-link:before {
+    background-position: 0 -335px;
+}
+.socailLink span.xingIcn,
+.socialNet .form-item-xing-link:before {
+    background-position: 0 -375px;
+}
+.descpOut {
+    margin-bottom: 30px;
+}
+#ew-network-profile-form textarea {
+    border-width: 1px;
+}
+.viewSetting p {
+    margin-bottom: 25px;
+}
+#ew-network-profile-form .form-item {
+    padding-bottom: 16px;
+}
+#ew-network-profile-form .custom-checkbox label {
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/sprite.png) -30px -419px no-repeat;
+    padding-left: 40px;
+}
+#ew-network-profile-form .custom-checkbox label.checked {
+    background-position: -30px -454px;
+}
+#ew-network-profile-form .placeholder .placeholder_span  {
+    color: #dfc5de
+}
+.socialNet .placeholder .placeholder_span {
+    left: 40px;
+}
+.tabs .nav {
+    margin-bottom: 0;
+}
+.mainCnt {
+    width: 575px;
+    padding-top: 25px
+}
+.viewImage {
+    width: 110px;
+    height: 110px;
+    float: left;
+}
+.pageContainer h3.profileName {
+    color: #b073aa;
+    margin-left: 0;
+    padding-top: 5px;
+}
+.viewDetails {
+    width: 445px;
+}
+.viewWrap {
+    padding-bottom: 15px;
+}
+.viewWrap label {
+    font-size: 15px;
+    font-weight: bold;
+}
+.viewWrap p {
+    color: #777;
+    font-size: 16px;
+}
+.rightBar {
+    width: 350px;
+    float: right;
+    padding-top: 25px;
+}
+.verticalBorder {
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/verticalborder.png) 604px 0 repeat-y;
+}
+.viewSet p {
+    margin-bottom: 0
+}
+.viewSet .viewLable {
+    display: inline-block;
+    width: 150px;
+}
+
+.jobDetailsList li {
+    border-top: 1px solid #e3e3e3;
+    padding: 8px 0;
+}
+.jobDetailsList li:first-child {
+    border: 0;
+}
+.jobDetailsList, .socailLink {
+    list-style: none;
+    color: #666666;
+    margin: 0 0 35px 0;
+}
+.jobDetailsList label {
+    display: inline;
+    color: #333333;
+    font-size: 16px;
+}
+.rightBar h3 {
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+.socailLink {
+    margin-top: 15px;
+}
+.socailLink li {
+    margin-bottom: 8px;
+}
+.topSpace50 {
+    margin-top: 50px;
+}
+#ew-club-user-register-form  {
+    float: left;
+    margin-right: 25px;
+    width: 655px;
+}
+.regRightBar {
+    width: 260px;
+    float: right;
+    border-left: 1px solid #ededed;
+    padding-left: 30px;
+    color: #6f6f6f;
+    font-size: 16px;
+    padding-top: 30px;
+}
+.regRightBar h3.block-title {
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+.testimonialList .imgBox {
+    height: 110px;
+}
+.regRightBar ul.testimonialList li {
+    border: none;
+    padding: 0 0 50px 0;
+    min-height: 100px;
+}
+.regRightBar ul.testimonialList .field-content {
+    position: relative;
+}
+.regRightBar ul.testimonialList .views-field-body .field-content:before {
+    height: 10px;
+    left: 40px;
+    position: absolute;
+    top: -9px;
+    content: " ";
+    width: 19px;
+    background: url("/sites/all/themes/everywoman/everywoman-internals/images/testimonial_arrow.png") no-repeat 0 0 #fff;
+    z-index: 1;
+}
+#user-pass .form-item {
+    float: none;
+}
+/*****Network Dashboard****/
+.fancybox-close {
+    display: none !important;
+}
+.networkDashboard {
+    padding-top: 14px;
+}
+.colOuter {
+    width: 476px;
+}
+.boxHeader {
+    background: #512654;
+    padding-left: 10px;
+}
+.boxHeader h3 {
+    color: #ffffff;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: 'Trebuchet MS';
+    font-weight: normal;
+    line-height: 30px;
+    float: left;
+}
+.actionPoints {
+    width: 61px
+}
+.actionPoints a {
+    height: 30px;
+    width: 30px;
+    float: left;
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/sprite.png) -35px -336px no-repeat #8c4c95;
+}
+.actionPoints a:hover {
+    background-color: #a940b8;
+}
+.actionPoints a.prevArrow {
+    border-right: 1px solid #fff;
+    background-position: -35px -362px;
+}
+.actionPoints a.disable {
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    background-color: #8c4c95;
+}
+.boxContent {
+    padding-top: 23px;
+}
+.boxContent .newList {
+    margin-left: 130px;
+}
+.newList p {
+    margin: 0;
+    color: #999999;
+    font-size: 11px;
+}
+.newList h4 {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'merriweatherregular';
+}
+.newList a {
+    color: #6c2c77;
+}
+.newList ul {
+    margin: 0;
+}
+.newList li {
+    list-style: none;
+    padding-bottom: 10px;
+}
+.boxContent .imageBox {
+    width: 110px;
+    text-align: center;
+}
+.boxFooter {
+    background: #f0eee8;
+}
+.boxFooter a {
+    background: #b073aa;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 5px 13px;
+}
+.boxFooter a:hover {
+    text-decoration: none;
+    background: #ba5ab1;
+}
+.boxOuter {
+    margin-bottom: 30px;
+}
+.workbook {
+    background: #f0eee8;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 1px;
+}
+.progressBox {
+    text-align: center;
+    border-bottom: 2px solid #bf82b9;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+.workBox {
+    width: 190px;
+}
+.workArea {
+    padding-bottom: 18px;
+}
+.workArea h3 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    color: #9959a4;
+    font-family: 'merriweatherlight';
+}
+.workArea p {
+    margin: 0;
+    color: #999999;
+    font-family: 'merriweatherlight';
+    text-transform: uppercase;
+}
+.newWorkbook {
+    background: #f0eee8;
+    font-size: 16px;
+    font-family: 'merriweatherbold';
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 15px
+}
+.newWorkbook ul {
+    list-style: none;
+    margin: 0;
+}
+.newWorkbook li {
+    padding-bottom: 10px;
+}
+.notebookBox .newList {
+    margin-left: 0;
+    margin-right: 130px;
+}
+.countBox {
+    width: 114px;
+    background: #b073aa;
+    text-align: center;
+    font-size: 45px;
+    color: #fff;
+    line-height: 60px;
+    font-family: 'merriweatherlight';
+    margin-top: -23px;
+}
+.countBox p {
+    margin: 0;
+    background: #e1dfd9;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #512653;
+    line-height: 30px;
+}
+.latestNetwork {
+    padding-top: 0;
+    background: #f0eee8;
+    font-size: 11px;
+    font-weight: bold;
+    color: #512652
+}
+.latestNetwork p {
+    margin: 0;
+    padding-bottom: 4px;
+}
+.latestNetwork .imgBox {
+    width: 205px;
+}
+.latestNetwork .shortCnt {
+    margin-left: 220px;
+    padding-top: 6px;
+}
+.shortCnt h3 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: normal;
+    font-family: 'merriweatherlight';
+    padding-bottom: 13px;
+}
+.commentsView {
+    color: #bf82b9;
+    text-transform: uppercase;
+    background: url(/sites/all/themes/everywoman/everywoman-internals/images/sprite.png) -40px -387px no-repeat;
+    padding-top: 4px;
+    padding-left: 21px;
+}
+.likeBox {
+    background: #bf82b9;
+    width: 37px;
+    color: #fff;
+    line-height: 20px;
+    font-size: 14px;
+    margin-right: 32px;
+    font-weight: normal;
+}
+.likeBox span {
+    padding: 0 5px;
+}
+.likeBox p {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 0;
+    background: #fff;
+    color: #666666;
+    padding: 0 5px;
+}
+.listing ul {
+    list-style: none;
+    margin: 0 0 10px 0;
+}
+.listing .listImg {
+    width: 90px;
+}
+
+.listing li {
+    padding: 5px 0;
+    border-top: 1px solid #f0eee8;
+}
+.listing li:first-child {
+    border: none;
+    padding-top: 10px
+}
+.listCnt {
+    margin-left: 105px;
+    position: relative;
+}
+.listing h3 {
+    margin: 0;
+    font-size: 20px;
+    font-family: 'merriweatherlight';
+    font-weight: normal;
+    padding-right: 80px;
+    padding-top: 10px;
+}
+.listing .likeBox {
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+.listing .commentsView {
+    color: #999999;
+    font-size: 11px;
+    background-position: -40px -484px;
+}
+.smlTabs {
+    font-size: 11px;
+    text-transform: uppercase;
+    padding-top: 0;
+}
+.smlTabs .nav-tabs li:first-child a {
+    width: 100px;
+}
+.smlTabs .nav-tabs a {
+    width: 100px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.smlTabs .nav-tabs .active {
+    border-top-width: 2px;
+    margin-top: -6px;
+}
+.smlTabs .nav-tabs .active a, .smlTabs .nav-tabs .active a:hover {
+
+    padding-bottom: 4px;
+    padding-top: 4px;
+    border-left: 1px solid #f0eee8;
+    border-right: 1px solid #f0eee8;
+
+}
+.nextBoxOuter .boxOuter {
+    width: 225px;
+}
+.eventBox {
+    padding-top: 0;
+}
+.dateBox {
+    background: #e1dfd9;
+    font-size: 46px;
+    line-height: 65px;
+    font-family: 'merriweatherlight';
+    color: #8c4c95;
+}
+.dateBox .day{
+    background: #f0eee8;
+    width: 107px;
+    text-align: center;
+    padding-top: 10px;
+}
+.dateBox .month {
+    padding-top: 10px;
+    text-transform: uppercase;
+    padding-left: 3px;
+}
+.eventCnt {
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+.eventCnt h3 {
+    margin: 14px 0 20px 0;
+    font-size: 16px;
+    font-family: 'Trebuchet MS';
+    line-height: 18px;
+}
+.eventCnt p {
+    margin: 0;
+    color: #666666;
+}
+/****setting Page*****/
+.settingPage {
+    padding-top: 35px;
+}
+.settingPage .control-label {
+    font-size: 18px;
+    color: #777777;
+    text-align: left;
+    width: 140px;
+}
+.settingPage .controls {
+    margin-left: 146px
+}
+.settingPage .userName {
+    font-size: 19px;
+    font-weight: bold;
+    color: #333333;
+}
+.emailId,
+.userName {
+    line-height: 30px;
+}
+.emailId p,
+.userName p {
+    margin: 0;
+}
+#edit-account .tabs {
+    margin-bottom: 40px;
+}
+#edit-account .form-item {
+    float: none;
+    padding-bottom: 12px;
+}
+#edit-account label {
+    font-size: 18px;
+    color: #777777;
+    width: 160px;
+    float: left;
+    padding-top: 15px
+}
+#edit-account input[type="password"],
+#edit-account input[type="text"] {
+    background: none repeat scroll 0 0 #BF81B8;
+    border-color: #BF81B8;
+    color: #FFFFFF;
+    width: 286px;
+    box-shadow: none;
+}
+#edit-account .form-required {
+    color: #ff0000;
+}
+#user-profile-form .form-actions {
+    padding: 0;
+    background: none;
+    border: none;
+}
+#user-profile-form .form-submit {
+    background: #9b5ba4;
+    font-size: 18px;
+    font-weight: bold;
+    width: 135px;
+    padding: 10px;
+}
+#user-profile-form .form-submit:hover {
+    background: #BF81B8
+}
+#edit-account .placeholder {
+    display: inline-block;
+}
+#edit-account .placeholder .placeholder_span{
+    color: #dfc5de
+}
+.dropdownCustom {
+    float: left;
+    position: relative;
+}
+.dropdownCustom ul {
+    margin: 0;
+    list-style: none;
+    border: 1px solid #9B5BA4;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 150px;
+    display: none;
+}
+.dropdownCustom:hover {
+    padding-bottom: 10px;
+}
+.dropdownCustom:hover ul {
+    display: block;
+}
+.dropdownCustom ul li:first-child:after {
+    border-bottom: 8px solid #9B5BA4;
+    border-left: 8px solid #fff;
+    border-right: 8px solid #fff;
+    content: "";
+    left: 30px;
+    position: absolute;
+    top: -9px;
+}
+.dropdownCustom ul a {
+    display: block;
+    padding: 5px 10px;
+    margin: 0
+}
+.dropdownCustom li {
+    border-bottom: 1px solid #F0EEE8;
+    position: relative;
+}
+
+.messages--status.messages.status {
+    background: #C0FFD8;
+    border: 1px solid #29803E;
+    color: #29803E;
+    padding: 5px;
+    text-align: center;
+}
+.form-item-profile-picture {
+    position: relative;
+}
+.form-item-profile-picture input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 1;
+}
+.imageSelected  input[type="file"]{
+    z-index: -1
+}

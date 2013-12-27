@@ -1,0 +1,1099 @@
+var $iTestCaseId = 0;
+var $rs;  
+var $rs1;
+var $i;
+var $ii;
+var $page;
+var $pg;
+var $strAction
+var $strParam1;
+var $strControl;
+var $strControlName;
+var $strPopup;
+var $iPositionNear;
+var $strControlNear;
+var $value;
+var $strColumnName;
+var $strMatchType;
+var $iLength;
+var $errorExists;
+var $strUnderControlName;
+var $iPositionUnder;
+var $strControlUnder;
+var $rowID = 0;
+var $NextRowID;
+var $strReturnMain;
+var $blgVerStatus="success";
+var $TcStatus=true;
+var $PreStaus=true;
+var $iSrNo;
+var $isAssert;
+var $StrStatus;
+var $j=0;
+var $rs2;
+var $ipath;
+var $ResultCom;
+var $iRound;
+var $ireadxml;
+var $strExeFlag;
+var $rs5;
+var $ipath;
+var $ipath1;
+var $k=0;
+var $TCondition="True";
+var $value1;
+var $value3;
+var $j;
+var $ExecutionMode;
+var $rs2;
+var $path1;
+var $path2;
+var $result="false";
+var $Sflag;
+var $strScreenShotFlag;
+var $scrnshotFlag;
+var $prevTCID;
+var $iTestItem;
+//*********************************************************************************************
+// Please modify the path in following location
+var db1=_getDB("sun.jdbc.odbc.JdbcOdbcDriver", "jdbc:odbc:Driver={Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)};DBQ=D:\\sahi\\userdata\\scripts\\TAF_SAHI\\Test_Case_Files_Inventory.xlsx;readOnly=false", "", "");
+$rs5 = db1.select("select * from [Sheet1$]"); 
+_include("D:/sahi/userdata/scripts/TAF_SAHI/Custom.sah"); 
+//*********************************************************************************************
+//*******Reading Path From Excel Sheet
+$path1=$rs5[0]["Path Of Folder where Baseline Table is write in Text File"];
+$path2=$rs5[0]["Path Of Folder where Final Table is write in Text File"];
+
+//*******************
+//Error handling
+function onScriptError()
+{
+	if($strPopup=="null")
+	{
+		//_log("Test step :"+ $strAction + " from Test Case :" + $iTestCaseId + " failed due to some error. Executing next test case", "failure");
+		_log("Test step :"+ $strAction + " from Test Case :" + $iTestCaseId + " & Test ITem : " + $strTestITem + " failed due to some error. Executing next test case", "failure");
+		
+	}
+	else
+	{
+		//_popup($strPopup)._log("Test step :"+ $strAction + " from Test Case :" +$iTestCaseId + " failed due to some error. Executing next test case.", "failure");
+		_popup($strPopup)._log("Test step :"+ $strAction + " from Test Case :" +$iTestCaseId + " & Test ITem : " + $strTestITem + " failed due to some error. Executing next test case.", "failure");
+	}
+	funcNextTCExeOnException();
+}
+	
+function onScriptFailure()
+{
+	funcNextTCExeOnException();
+}
+function funcBuildingTimeStamp()
+{
+	var $TimeStamp; 
+	var $strDate = new Date();
+	$TimeStamp = $strDate.getDate()+ "/"+($strDate.getMonth()+1)+ "/" + $strDate.getFullYear()+" "+ $strDate.getHours() + ":" +($strDate.getMinutes()+1)+":" +$strDate.getSeconds();
+	
+	//_popup($strPopup)._alert($TimeStamp);
+	return $TimeStamp;
+}
+function funcFindRoundId()
+{
+	var $iRoundId;
+	var $CurRound;
+	$iRoundId=$db.select("select MAX(Round) as MaxValue from [Results$]");	
+		if ($iRoundId[0]["MaxValue"]!="null")
+		{
+			$CurRound=parseInt($iRoundId[0]["MaxValue"])+1;
+		}
+		else
+		{
+			$CurRound=1;
+		}
+	
+	//_popup($strPopup)._alert($CurRound);
+	return $CurRound;
+}
+function funcNextTCExeOnException()
+{
+	//Taking Snapshot
+	//_alert("exception");
+	//funcTakingSnapShot($strPopup);
+	
+	//Marking fail when strAction is Precondition 
+	if($strAction=="precondition")
+	{
+		$PreStaus=false;
+	}
+		
+	//Marking fail when strAction is Step in keywordlist
+	if($strAction!="precondition" && $strAction.indexOf("assert")<0 )
+	{
+		$TcStatus=false;
+		//funcUpdateStaus("FAIL","Data_File",$iSrNo,$iSrNo);
+		funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+		
+	}
+	//Marking fail when strAction is verification in keywordlist	
+	if (parseInt($strAction.indexOf("assert"))>-1)	
+	{
+		$blgVerStatus="failure";
+		if ($strPopup=="null")
+		{
+			_log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +". Execution status :" + $blgVerStatus , $blgVerStatus);
+			//funcUpdateStaus("FAIL","Data_File",$iSrNo,$iSrNo);
+			 funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+		}
+		if ($strPopup!="null")
+		{
+			_popup($strPopup)._log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +". Execution status :" + $blgVerStatus, $blgVerStatus);
+			//funcUpdateStaus("FAIL","Data_File",$iSrNo,$iSrNo);
+			funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+		}
+	}
+	
+	if ($strAction=="precondition" && $strMatchType == "Exit")
+	{
+		//funcUpdateStaus("FAIL","Data_File",parseInt($iSrNo),parseInt($rs.length));
+		funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",parseInt($iSrNo),parseInt($rs.length));
+		funcTcExecutionDriver($rs.length);
+	}
+	else
+	{
+		if ($strAction=="precondition" && $strMatchType != "null" )
+		{
+			//funcUpdateStaus("FAIL","Data_File",parseInt($iSrNo),parseInt($strMatchType)-1);
+			funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",parseInt($iSrNo),parseInt($strMatchType)-1);
+			
+			funcTcExecutionDriver(parseInt($strMatchType)-1);
+		}
+		else 
+		{
+			if($strAction=="precondition" && $strMatchType == "null")
+			{
+				
+				//funcUpdateStaus("FAIL","Data_File",parseInt($iSrNo),parseInt($NextRowID));
+				funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",parseInt($iSrNo),parseInt($NextRowID));
+				funcTcExecutionDriver($NextRowID);
+		    }
+			if ($strAction!="precondition" && $strMatchType == "null" )
+			{
+				funcTcExecutionDriver($NextRowID);
+			}
+		}
+		
+	}
+	
+}
+function funcUpdateStaus($strStaus,$strSheetName,$iSeqStart,$iSeqEnd)
+{
+
+	var $rs3;
+	var $strQuery;
+	var $TimeStamp; 
+	var $strDate = new Date();
+	$TimeStamp = $strDate.getDate()+ "/"+($strDate.getMonth()+1)+ "/" + $strDate.getFullYear()+" "+ $strDate.getHours() + ":" +($strDate.getMinutes()+1)+":" +$strDate.getSeconds();
+	
+	
+	while($iSeqStart <= $iSeqEnd)
+	{
+		if ($strSheetName=="Data_File")
+		{
+			$strQuery="update [Data_File$] set Status =" +"'"+$strStaus+"'"+", ExecutedOn="+"'"+$TimeStamp+"'" +" where StepNumber ="+$iSeqStart;
+			$rs3 = $db.select("select * from [Data_File$]");	
+			$db.update($strQuery);
+		
+		}
+		if ($strSheetName=="Preconditions")
+		{
+			$rs3 = $db.select("select * from [Preconditions$]");	
+			$strQuery="update [Preconditions$] set Status =" +"'"+$strStaus+"'"+", ExecutedOn="+"'"+$TimeStamp+"'" +" where StepNumber ="+$iSeqStart;
+			$db.update($strQuery);
+		}
+	     $iSeqStart=parseInt($iSeqStart)+1
+	}
+}
+function funcUpdateResultStatus($strRounds,$iTestItem,$iTCID,$strStatus,$iSeqStart,$iSeqEnd)
+{
+	var $strResultQuery;
+	var $strTime;
+	var $strTime=funcBuildingTimeStamp();
+		while($iSeqStart <= $iSeqEnd)
+		{
+			$strResultQuery="insert into [Results$]  values ('"+ $strRounds +"','"+$iTestItem+"','"+$iTCID+"','"+ $iSeqStart +"','"+ $strStatus +"','"+ $strTime +"')";
+			$db.update($strResultQuery);	
+			$iSeqStart=parseInt($iSeqStart)+1;
+		}
+}
+function funcUpdatePreConStatus($strStaus,$iSeqStart)
+	{
+		var $strPreQuery;
+		var $TimeStamp=funcBuildingTimeStamp();
+		$strPreQuery="update [Preconditions$] set Status =" +"'"+$strStaus+"'"+", ExecutedOn="+"'"+$TimeStamp+"'" +" where StepNumber ="+$iSeqStart;
+		$db.update($strPreQuery);
+	}
+function funcMakingExecutableStatement($iRowNumber,$strAction)
+{	
+	var $ExecStep;
+	var $strPreMatchType;
+	var $toStrS, $toStrE;
+	if ($strAction=="precondition")
+	{
+		$rs2 = $db.select("select * from [Preconditions$]");	
+	}
+	else
+	{
+		$rs2 = $db.select("select * from [Data_File$]");	
+	}
+	$strAction = $rs2[$iRowNumber]["Action"];
+	$strPreMatchType = $rs2[$iRowNumber]["MatchType"];
+	$strPopup = $rs2[$iRowNumber]["ScreenName"];
+	$strControl = $rs2[$iRowNumber]["ObjectType"];
+	
+	//Under related data read
+	$iPositionUnder = $rs2[$iRowNumber]["Under_ObjectPosition"];
+	$iPositionUnder = parseInt($iPositionUnder);
+	$strControlUnder = $rs2[$iRowNumber]["Under_ObjectType"];
+	$strUnderControlName = $rs2[$iRowNumber]["Under_ObjectName"];
+	
+	//near related data read
+	$iPositionNear = $rs2[$iRowNumber]["Near_ObjectPosition"];
+	$iPositionNear = parseInt($iPositionNear);
+	$strControlNear = $rs2[$iRowNumber]["Near_ObjectType"];
+	$strControlName = $rs2[$iRowNumber]["ObjectName"];
+	
+	//Value reading
+	$strParam1 = $rs2[$iRowNumber]["DataValue"];
+	
+	if ($strAction.indexOf("_assert")>-1 && $strParam1 != "null")
+	{
+		$toStrS = "(String(";
+		$toStrE = ")";
+	}
+	else
+	{
+		$toStrS = "(";
+		$toStrE = "";
+	}
+	if ($strAction.indexOf("_wait")>-1 && $strParam1 != "null")
+	{
+		$ExecStep="_sahi."+"_"+$strAction+$toStrS+$strParam1+")";
+		return $ExecStep;
+	}
+
+	//With near
+	if ($strControlNear!="null"&$strControlUnder=="null")
+	{
+		$ExecStep="_sahi."+"_"+$strAction+$toStrS+"_sahi."+"_"+$strControl+"("+$iPositionNear+","+"_near("+"_sahi."+"_"+$strControlNear+"("+'"'+$strControlName+'"'+")"+")"+")";
+	}
+	//With under
+	if ($strControlUnder!="null" & $strControlNear=="null")
+	{
+		$ExecStep="_sahi."+"_"+$strAction+$toStrS+"_sahi."+"_"+$strControl+"("+$iPositionUnder+","+"_under("+"_sahi."+"_"+$strControlUnder+"("+'"'+$strUnderControlName+'"'+")"+")"+")";	
+	}
+	//With near and under
+	if ($strControlUnder!="null" & $strControlNear!="null")
+	{
+	
+		$ExecStep="_sahi."+"_"+$strAction+$toStrS+"_sahi."+"_"+$strControl+"("+$iPositionNear+","+"_near("+"_sahi."+"_"+$strControlNear+"("+'"'+$strControlName+'"'+")"+")"+","+"_under("+"_"+$strControlUnder+"("+'"'+$strUnderControlName+'"'+")"+")"+")";
+	}
+	//With out near or under
+	if ($strControlUnder=="null" & $strControlNear=="null" & $strControlName!="null")
+	{
+		$ExecStep="_sahi."+"_"+$strAction+$toStrS+"_sahi."+"_"+$strControl+"("+'"'+$strControlName+'"'+")";
+	}
+	
+	
+	if($strPreMatchType!="null" & $strAction!="setValue")
+	{
+		$ExecStep = $ExecStep + "." + $strPreMatchType ;
+	}
+	
+	if($strPreMatchType!="null" & $strAction=="setValue")
+	{
+		var $itmp;
+		var $tmp;
+		$tmp="";
+		for ($itmp=0;$itmp<$strMatchType;$itmp++)
+		{
+			
+		$tmp = $tmp + String($strParam1);
+			
+		}
+		$ExecStep = $ExecStep + $toStrE + ","+'"'+$tmp+'"'+")";
+		
+		return $ExecStep;
+	}
+	
+	
+	if($strParam1=="null")
+	{
+		$ExecStep = $ExecStep + ")";
+	}
+	else
+	{
+			if ($strControlUnder=="null" & $strControlNear=="null" & $strControlName=="null")
+			{
+				$ExecStep="_sahi."+"_"+$strAction+$toStrS+'"'+$strParam1+'"'+")";
+			}
+			else
+			{
+				
+				if ($strParam1.indexOf("<")>-1) 
+				{
+					$ExecStep = $ExecStep + $toStrE + ","+'""'+")";
+				}
+				
+				if ($strParam1.indexOf("<")<0) 
+				{
+					$ExecStep = $ExecStep + $toStrE + ","+'"'+$strParam1+'"'+")";
+				}
+			}
+	}
+	
+	return $ExecStep;
+}
+function funcMovingToNextTC($currPos,$tcid)
+{
+	while($rs[$currPos]["TestCaseId"] == "null" || String($rs[$currPos]["TestCaseId"]) == $tcid)
+	{
+		$currPos = $currPos+1;
+		if ($currPos == $rs.length)
+		{
+			$currPos = $rs.length
+			//funcTakingSnapShot($strPopup);
+			break;
+		}
+	} 
+	
+	return $currPos
+}
+function funcPreConditonExecution($strprecon1)
+{
+	var $PreConStartPos = 0
+	var $PreConEndPos
+	var $strReturnPre;
+	var $ExecStep;
+	
+	//Loop to get starting point	
+	while($rs1[$PreConStartPos]["TestCaseId"]!=$strprecon1 )
+	{
+		$PreConStartPos = $PreConStartPos+1;
+	}		
+	//Loop to execute the precondition steps
+	if ($PreConStartPos >= 0)
+	{
+		while($rs1[$PreConStartPos]["TestCaseId"]=="null" || $rs1[$PreConStartPos]["TestCaseId"]==$strprecon1)
+		{
+			$strPopup = $rs1[$PreConStartPos]["ScreenName"];
+			$pSrNo = $rs1[$PreConStartPos]["StepNumber"]
+			$pSrNo=parseInt($pSrNo);
+			$strReturnPre=funcMakingExecutableStatement($PreConStartPos,"precondition");
+					
+			if ($strPopup=="null")
+			{
+				_eval($strReturnPre);
+			}
+			else
+			{
+				_popup($strPopup)._eval($strReturnPre);
+			}
+								
+			if($PreStaus==true)
+			{
+						
+				//funcUpdateStaus("EXECUTED","Preconditions",$pSrNo,$pSrNo);
+				funcUpdatePreConStatus("EXECUTED",$pSrNo);
+				if ($strScreenShotFlag=="Step Level")
+				{
+					funcTakingSnapShot($strPopup);
+				}
+			}
+			
+			$PreConStartPos=parseInt($PreConStartPos)+1
+			
+			if ($PreConStartPos==$rs1.length || $PreStaus==false)
+			{
+				
+				break;
+			}
+		}	
+		
+	}
+	
+	
+}
+function funcRecordsInfo($pg)         
+{
+	var $tmp;
+	var $pgArr;
+	
+	$tmp = $pg.split("/");
+		
+      $noPages = $tmp[1];
+	  if ($strPopup=="null")
+	 {
+	   _log(" Number of Pages are:"+$noPages,"custom");
+	 }
+	 else
+	 {
+	   _popup($strPopup). _log(" Number of Pages are:"+$noPages,"custom");
+	 }
+	  
+	  
+}
+function funcToVerifyTable()
+{
+	var $errorExists;
+	var $pgExists;
+	var $pg;
+	var $arrValues;
+	var $arrColumn;
+	var $lenArrColumn
+	var $page
+	var $row, $c
+	var $strColValue
+	var $Flg;
+	var $TestcaseStatus = true;
+	var $iLength;
+	var $a=0;
+	var $strAssertExist;
+	var $strAssetFlag;
+	var $iPrev;
+
+	
+		$arrValues = $strParam1.split("|");
+		$lenArrValues = $arrValues.length;
+		$arrColumn = $strUnderControlName.split("|");
+		$lenArrColumn = $arrColumn.length;	
+		$intRemainder=($lenArrValues % $lenArrColumn)
+		if ($intRemainder != 0)
+		{
+			if ($strPopup=="null")
+			{
+				_log("Invalid data is entered in excel file.", "failure");
+			}
+			if ($strPopup!="null")
+			{
+				_popup($strPopup)._log("Invalid data is entered in excel file.", "failure");
+			}
+		}
+		else
+		{
+			if ($strPopup=="null")
+			{
+				_set($pgExists, _exists(_row(/< > .*/)));
+			}
+			if ($strPopup!="null")
+			{
+				_set($pgExists, _popup($strPopup)._exists(_row(/< > .*/)));
+			}
+			// code for table having the pagination info
+			if ($pgExists == true)
+			{
+				if ($strPopup!="null")
+				{
+					_set($pg, _popup($strPopup)._getText(_textbox(0,_near(_cell("<")))));
+				}
+				if ($strPopup=="null")
+				{
+					_set($pg,_getText(_textbox(0,_near(_cell("<")))));
+				}
+				funcRecordsInfo($pg);
+				$intDivide = ($lenArrValues/$lenArrColumn);
+				for($val = 0; $val <= $intDivide-1; $val++)
+				{
+					$strAssetFlag = false;
+					for ($page = 1; $page <= $noPages; $page++)
+					{
+						if ($page > 1)
+						{
+							if ($strPopup=="null")
+							{
+								_click(_cell(">"));
+							}
+							if ($strPopup!="null")
+							{
+								_popup($strPopup)._click(_cell(">"));
+							}
+						}
+						
+						if ($strPopup=="null")
+						{
+							//_alert($arrValues[$val]);
+							_set($strAssertExist,_exists(_cell($arrValues[$val])));
+						}
+						if ($strPopup!="null")	
+						{
+							//_popup($strPopup)._alert($arrValues[$val]);
+							_set($strAssertExist,_exists(_popup($strPopup)._cell($arrValues[$val])));
+						}
+						
+						if ($strAssertExist == true)
+						{
+							if ($strPopup=="null")
+							{
+								_log("The specified value " +$arrValues[$val]+ " found in the table at "+ $page +" page." ,"custom1");
+							}
+							if ($strPopup!="null")
+							{
+								_popup($strPopup)._log("The specified value " +$arrValues[$val]+ " found in the table at "+ $page +" page." ,"custom1");
+							}
+							
+							if ($lenArrColumn == 1)
+							{
+							
+								for ($col = 0; $col <= $lenArrColumn-1; $col++)
+								{	
+								
+									if ($strUnderControlType=="tableHeader")
+									{
+										_set($strColValue,_getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_tableHeader($arrColumn[$col])))));
+									}
+									if ($strUnderControlType=="cell")
+									{
+								
+										_set($strColValue,_popup($strPopup)._getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_cell($arrColumn[$col])))));
+									}
+																					
+									if ($strColValue == $arrValues[$val])
+									{
+										//_popup($strPopup)._alert($strColValue);
+										if ($strPopup!="null")
+										{
+											_popup($strPopup)._log("The value "+ $arrValues[$val] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+										}
+										if ($strPopup=="null")
+										{
+											_log("The value "+ $arrValues[$val] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+										}
+										$Flg = true;
+										continue;
+									}
+									else
+									{
+										if ($strPopup!="null")
+										{
+											_popup($strPopup)._log("The value "+ $arrValues[$val] +" does not found under the "+ $arrColumn[$col] +" column.","custom");
+										}
+										if ($strPopup=="null")
+										{
+											_log("The value "+ $arrValues[$val] +" does not found under the "+ $arrColumn[$col] +" column.","custom");
+										}
+										$Flg = false;
+									}
+									
+									if ($Flg == false)
+									{
+										$TestcaseStatus=false;				
+									}
+								}	
+							}
+							else
+							{
+								for ($col = 1; $col <= $lenArrColumn-1; $col++)
+								{
+									
+																
+									if ($strUnderControlType=="tableHeader")
+									{
+										_set($strColValue,_getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_tableHeader($arrColumn[$col])))));
+									}
+									if ($strUnderControlType=="cell")
+									{
+									
+										_set($strColValue,_getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_cell($arrColumn[$col])))));
+									}
+																	
+									$a = parseInt($a) + parseInt($intDivide);
+																										
+									if ($strColValue == $arrValues[$a])
+									{
+										if ($strPopup=="null")
+										{
+											_log("The value "+ $arrValues[$a] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+										}
+										if ($strPopup!="null")
+										{
+											
+											_popup($strPopup)._log("The value "+ $arrValues[$a] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+										}
+										$Flg = true;
+										continue;
+									}
+									else
+									{
+										if ($strPopup=="null")
+										{
+											_log("The value "+ $arrValues[$a] +" does not found under the "+ $arrColumn[$col] +" column.","custom");
+										}
+										if ($strPopup!="null")
+										{
+											_popup($strPopup)._log("The value "+ $arrValues[$a] +" does not found under the "+ $arrColumn[$col] +" column.","custom");
+										}	
+										$Flg = false;
+									}
+									
+									if ($Flg == false)
+									{
+										$TestcaseStatus = false;				
+									}											
+								}
+							}
+							$strAssetFlag = true;	
+							$a = $val+1;
+							break;
+						}
+						else
+						{	
+							$a = parseInt($val);
+						}
+					}
+					
+					if ($strAssetFlag != true)
+					{
+						if ($strPopup=="null")
+						{
+							_log("The specified value " +$arrValues[$val]+ " not found in the table." ,"custom");
+						}
+						if ($strPopup!="null")
+						{
+						   _popup($strPopup)._log("The specified value " +$arrValues[$val]+ " not found in the table." ,"custom");
+						}
+						$TestcaseStatus = false;
+					}
+					
+					if ($page > 1 && $page <= $noPages)
+					{
+						for($iPrev = 1; $iPrev <= $page-1; $iPrev++) 
+						{
+							if ($strPopup=="null")
+							{
+								_click(_cell("<"));
+							}
+							if ($strPopup!="null")
+							{
+								_popup($strPopup)._click(_cell("<"));
+							}
+						}
+					}
+					else if($page > $noPages)
+					{
+						for($iPrev = 1; $iPrev <= $page-2; $iPrev++) 
+						{
+							
+							if ($strPopup=="null")
+							{
+								_click(_cell("<"));
+							}
+							if ($strPopup!="null")
+							{
+								_popup($strPopup)._click(_cell("<"));
+							}
+						}
+					}
+					
+				}						
+				
+				if ($TestcaseStatus == true)
+				{
+					if ($strPopup=="null")
+					{
+						_log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Pass ", "success");
+					}
+					if ($strPopup!="null")
+					{
+						_popup($strPopup)._log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Pass ", "success");
+					}
+				}
+				else if ($strAssetFlag != true || $TestcaseStatus == false)
+				{
+					if ($strPopup=="null")
+					{
+						_log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Fail", "failure");			
+					}
+					if ($strPopup!="null")
+					{
+						_popup($strPopup)._log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Fail", "failure");			
+					}
+				}
+			}
+			
+			// code for table of without pagination
+			else
+			{
+				$intDivide = ($lenArrValues/$lenArrColumn);
+				
+				for($val = 0; $val <= $intDivide-1; $val++)
+				{
+					try
+					{
+						if ($lenArrColumn == 1)
+						{
+							for ($col = 0; $col <= $lenArrColumn-1; $col++)
+							{	
+								
+								if ($strUnderControlType=="tableHeader")
+								{
+									_set($strColValue,_getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_tableHeader($arrColumn[$col])))));
+								}
+								if ($strUnderControlType=="cell")
+								{
+									_set($strColValue,_getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_cell($arrColumn[$col])))));
+								}		
+								
+								if ($strColValue == $arrValues[$val])
+								{
+									if ($strPopup!="null")
+									{
+										_popup($strPopup)._log("The value "+ $arrValues[$val] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+									}
+									if ($strPopup=="null")		
+									{
+										_log("The value "+ $arrValues[$val] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+									}
+									$Flg = true;
+									continue;
+								}
+							}	
+						}
+						else
+						{
+							for ($col = 1; $col <= $lenArrColumn-1; $col++)
+							{
+								
+								if ($strUnderControlType=="tableHeader")
+								{
+									_set($strColValue,_getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_tableHeader($arrColumn[$col])))));
+								}
+								if ($strUnderControlType=="cell")
+								{
+									_set($strColValue,_getCellText(_cell(0,_near(_cell($arrValues[$val])),_under(_cell($arrColumn[$col])))));
+								}
+								
+								
+								$a = $a+$intDivide;
+								
+								if ($strColValue == $arrValues[$a])
+								{
+									if ($strPopup!="null")
+									{
+										_popup($strPopup)._log("The value "+ $arrValues[$a] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+									}
+									if ($strPopup=="null")
+									{
+										_log("The value "+ $arrValues[$a] +" found under "+ $arrColumn[$col] +" column.", "custom1");
+									}
+									
+									
+									$Flg = true;
+									continue;
+								}
+								else
+								{
+									if ($strPopup!="null")
+									{
+										_popup($strPopup)._log("The value "+ $arrValues[$a] +" does not found under the "+ $arrColumn[$col] +" column.","custom");
+									}
+									if ($strPopup=="null")	
+									{
+										_log("The value "+ $arrValues[$a] +" does not found under the "+ $arrColumn[$col] +" column.","custom");
+									}
+									$Flg = false;
+									//break;
+								}
+								
+								if ($Flg == false)
+								{
+									$TestcaseStatus = false;			
+								}
+							}
+						}
+					}
+					
+					catch(e)
+					{
+						
+						if ($strPopup!="null")
+						{
+							_popup($strPopup)._log("The value "+ $arrValues[$val] +" does not found under the "+ $arrColumn[$col] +" column.", "custom");
+						}
+						if ($strPopup=="null")
+						{
+							_log("The value "+ $arrValues[$val] +" does not found under the "+ $arrColumn[$col] +" column.", "custom");
+						}
+						$TestcaseStatus = false;
+					}
+					
+					$a = $val+1;	
+				}
+				
+				if ($TestcaseStatus == true)
+				{
+					
+					if ($strPopup!="null")
+					{
+						_popup($strPopup)._log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Pass ", "success");
+					}
+					if ($strPopup=="null")
+					{
+						_log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Pass ", "success");
+					}
+					
+				}
+				else
+				{
+					if ($strPopup=="null")
+					{
+						_log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Fail", "failure");	
+					}
+					if ($strPopup!="null")
+					{
+						_popup($strPopup)._log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +" Fail", "failure");	
+					}
+			
+				}
+			}
+		}
+	
+				
+}
+//function funcTakingSnapShot($strPopupName,$strParam1Value)
+function funcTakingSnapShot($strPopup)
+{
+    var $strParam1Value;
+	if ($strPopup=="null")
+	{
+		_set($strParam1Value,_title());
+	}
+	else
+	{
+		_set($strParam1Value,_popup($strPopup)._title());
+	}
+	_execute("D:\\BrowserScrollTest.exe " + $strParam1Value ,true);
+}
+	
+
+for($j=0;$j<$rs5.length;$j++)
+{
+      $rs=null;
+      $rs1=null;
+      $rs2=null;
+      $rs3=null;      
+	  $ipath=$rs5[$j]["Path For Files To Execute"];
+	 
+	  //CallExcel($ipath);
+ 
+
+ // Get the DB instance
+var $db;
+$db=_getDB("sun.jdbc.odbc.JdbcOdbcDriver", "jdbc:odbc:Driver={Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)};DBQ="+$ipath+";readOnly=false", "", "");																															   
+
+// Run a select
+$rs = $db.select("select * from [Data_File$]");
+$rs1 = $db.select("select * from [Preconditions$]");
+$rs2 = $db.select("select * from [ExecutionMode$]");
+$ExecutionMode=$rs2[0]["Select Execution Mode"];
+
+
+function funcTcExecutionDriver($rowID)
+{	
+	for ($i = $rowID; $i<$rs.length; $i++)
+	{
+		
+		funcExecuteTestCases($i);
+		
+	}
+}
+
+function funcExecuteTestCases($ii)
+{
+	if($rs[$ii]["TestItem"]!="null")
+	{
+		$strTestItem = $rs[$ii]["TestItem"];
+	}
+	
+	if($rs[$ii]["TestCaseId"]!="null")
+	{
+		$strScreenShotFlag=$rs[$ii]["ScreenShotFlag"];
+		$iTestCaseId = $rs[$ii]["TestCaseId"];
+		$strExeFlag=$rs[$ii]["ExecutionFlag"];
+		if($ii!=0)
+		{
+		 funcTakingSnapShot($strPopup);
+		} 
+		 
+		
+	}
+	$NextRowID=funcMovingToNextTC($ii,$iTestCaseId);
+	$PreStaus=true;
+	$blgVerStatus="success";
+	$TcStatus=true;	
+	$strAction = $rs[$ii]["Action"];
+	$strPopup = $rs[$ii]["ScreenName"];
+	$strParam1 = $rs[$ii]["DataValue"];
+	$strControl = $rs[$ii]["ObjectType"];
+	$strControlName = $rs[$ii]["ObjectName"];
+	$strControlNear = $rs[$ii]["Near_ObjectType"];
+	$iPositionNear = $rs[$ii]["Near_ObjectPosition"];
+	$iSrNo=$rs[$ii]["StepNumber"];
+	$iSrNo= parseInt($iSrNo);
+	
+	$iPositionUnder = $rs[$ii]["Under_ObjectPosition"];
+	$strUnderControlType = $rs[$ii]["Under_ObjectType"];
+	$strUnderControlName = $rs[$ii]["Under_ObjectName"];
+	$strMatchType = "";
+	$strMatchType = $rs[$ii]["MatchType"];
+	if($strExeFlag=="Yes")
+	{
+		switch($strAction)
+		{
+			case "precondition":
+			{
+				
+				funcPreConditonExecution($strParam1);
+				break;
+			}
+			case "screenshot":
+			{
+				if($strMatchType=="On")
+				{
+						funcTakingSnapShot($strPopup);
+				}
+				break;
+				
+			}
+			case "XMLread":
+			{
+			    XMLread();
+			    break;
+			}
+			case "CompareResults":
+			{
+			    funcCompareResults();
+			    break;
+			}
+			case "verify_table":
+			{
+			    funcToVerifyTable();
+			    break;
+			}
+			case "Write":
+			{
+			    funcWrite();
+			    break;
+			}
+			case "ClickAlert":
+			{
+				funClickAlert();
+				break;
+			}
+			case "Alert":
+			{
+			    funAlert();
+			    break;
+			}
+			case "wait":
+			{
+				funcwait();
+				break;
+			}
+			case "verify_selected":
+			{
+			  funVerifySelected();
+			  break;
+			}
+			case "verify_enabled":
+			{
+			  funcVerifyEnabled();
+			  break;
+			}
+			default:
+			{
+				
+				$strReturnMain=funcMakingExecutableStatement($ii,$strAction)
+					
+					
+					  if ($strPopup=="null")
+						{
+							_eval($strReturnMain);
+						}
+						else
+						{
+						  _popup($strPopup)._eval($strReturnMain);
+						}
+					
+					
+					
+					
+				break;
+				
+			}
+		}
+		
+		/// To take a screenshot at step level
+			if ($strScreenShotFlag=="Step Level"&& $strScreenShotFlag!="No")
+			{
+					funcTakingSnapShot($strPopup);
+			}
+		//Updating status in excel file for keywordlist sheet steps
+		if($strAction !="precondition" && $strAction.indexOf("verify")<0 && $TcStatus==true && $strAction.indexOf("assert")<0)
+		{
+			//funcUpdateStaus("EXECUTED",$iSrNo,"Data_File")
+			funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"EXECUTED",$iSrNo,$iSrNo);
+				
+		}
+		
+		//Verification case updating logs
+		if(($strAction.indexOf("verify")>-1||$strAction.indexOf("assert")>-1) && $blgVerStatus!="failure")
+		{
+        
+		if ($strPopup=="null")
+			{
+				_log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +". Execution status :" + $blgVerStatus, $blgVerStatus);
+				funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+			}
+			else	
+			{
+				_popup($strPopup)._log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +". Execution status :" + $blgVerStatus, $blgVerStatus);
+				funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+			}
+		}
+		
+		if($strAction.indexOf("verify")>-1 && $blgVerStatus=="failure")
+		{
+			
+			if ($strPopup=="null")
+			{
+				_log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +". Execution status :" + $blgVerStatus, $blgVerStatus);
+				funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+			}
+			else	
+			{
+				_popup($strPopup)._log("Test Item :"+ $strTestItem + ". Test Case ID :" + $iTestCaseId +". Execution status :" + $blgVerStatus, $blgVerStatus);
+				funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"FAIL",$iSrNo,$iSrNo);
+			}
+		}
+		
+		
+		
+		
+		//Updating status in excel file for keywordlist sheet steps
+		if($PreStaus==true && $strAction =="precondition")
+		{
+			funcUpdateResultStatus($iRound,$strTestItem,$iTestCaseId,"PASS",$iSrNo,$iSrNo);
+		}
+	}
+	else
+	{
+		funcTcExecutionDriver($NextRowID);	
+	}
+
+}
+
+$iRound=funcFindRoundId();
+
+$iRound=parseInt($iRound);
+
+funcTcExecutionDriver($rowID);
+
+$ireadxml=parseInt($ireadxml);
+}

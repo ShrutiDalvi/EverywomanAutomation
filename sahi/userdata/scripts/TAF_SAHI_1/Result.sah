@@ -1,0 +1,135 @@
+function funcResultCount()
+{
+		var $rs6;
+		var $Passresult="False";
+		var $row;
+		var $value;
+		var $value1;
+		var $value2;
+		var $Failresult="False";
+		var $count4=1;
+		var $countfail=0;
+		var $Passcount=0;
+		var $Failcount=0;
+		var $countpass=0;
+		var $roundvalue;
+		var $roundvalue1;
+		var $rs6;
+		var $strQueryResult;
+		var db2=_getDB("sun.jdbc.odbc.JdbcOdbcDriver", "jdbc:odbc:Driver={Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)};DBQ=D:\\sahi\\userdata\\scripts\\TAF_SAHI\\Test_Case_Test_Data_Files\\Test_Data_File.xlsx;readOnly=false", "", "");
+		$rs6 = db2.select("select * from [Results$]"); 
+
+		for($row=0;$row<$rs6.length-1;$row++)
+		{
+		   $value=$rs6[$row]["TestCaseId"];
+		   $value1=$rs6[$row]["Status"];
+		   $roundvalue=$rs6[$row]["Round"];
+		   $row1=$row+1;
+		   $value2=$rs6[$row1]["TestCaseId"];
+		   if($value==$value2)
+		   {
+				
+			  if($value1!="PASS")
+				{
+				   $Failresult="True";
+				   $countfail=$countfail+1;
+				}
+				if($value1=="PASS")
+				{
+				  if($Failresult=="True")
+				  {
+					$Passresult="False";
+				  }	
+				  if($Failresult=="False")
+				  {
+					$Passresult="True";
+				  }
+				   
+				}
+			  
+		   }
+		   if($value!=$value2)
+		   {
+				
+				if($Failresult=="True")
+				{
+				  $Rvalue1="FAIL";
+				  $Failcount=$Failcount+1;
+				 // $rs3 = db2.select("select * from [ResultDashboard$]");	
+				  $strQueryResult="insert into [ResultDashboard$]  values ('"+ $roundvalue +"','"+ $value +"','"+$Rvalue1+"')";
+				  db2.update($strQueryResult);
+				}
+				if($Passresult=="True")
+				{
+				  $Rvalue1="PASS";
+				  $strQueryResult="insert into [ResultDashboard$]  values ('"+ $roundvalue +"','"+ $value +"','"+$Rvalue1+"')";
+				  db2.update($strQueryResult);
+				  $Passcount=$Passcount+1;
+				}
+				
+				$count4=$count4+1;
+				$Passresult="False";
+				$Failresult="False";
+				$countfail=0;
+			
+		   }
+
+		}
+
+		 
+		 if($Failresult=="True");
+		 {
+		   $Passresult="False";
+		 }
+
+		if($row1==$rs6.length-1 || $row1==$rs6.length)
+		{
+		   $value2=$rs6[$row1]["TestCaseId"];
+		   $value1=$rs6[$row1]["Status"];
+		   $roundvalue=$rs6[$row]["Round"];
+		   if($value1!="PASS")
+		   {
+			 $Failresult="True";
+			 $countfail=$countfail+1;
+			 
+		   }
+		   if($value1=="PASS")
+			{		 
+				 if($Failresult=="True")
+				  {
+					$Passresult="False";
+				  }	
+				  if($Failresult=="False")
+				  {
+					$Passresult="True";
+				  }
+				   
+			}
+			
+				if($Failresult=="True")
+				{
+				  $Rvalue1="FAIL";
+				  $strQueryResult="insert into [ResultDashboard$]  values ('"+ $roundvalue +"','"+ $value +"','"+$Rvalue1+"')";
+				  db2.update($strQueryResult);
+				  $Failcount=$Failcount+1;
+				}
+				if($Passresult=="True")
+				{
+				 $Rvalue1="PASS";
+				  $strQueryResult="insert into [ResultDashboard$]  values ('"+ $roundvalue +"','"+ $value +"','"+$Rvalue1+"')";
+				  db2.update($strQueryResult);
+				  $Passcount=$Passcount+1;
+				} 
+				
+				$Passresult="False";
+				$Failresult="False";
+				$countfail=0; 
+				//$row1=$row1+1;
+		}
+        $strQueryResult="null";
+		db2="null";
+		$rs6="null";
+		$strQueryResult="";
+		db2="";
+		$rs6="";
+}

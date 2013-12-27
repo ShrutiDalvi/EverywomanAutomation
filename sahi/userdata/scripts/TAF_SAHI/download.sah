@@ -1,0 +1,3 @@
+_click(_link("Download Reports")); // click on download link
+_wait(15000);
+_saveDownloadedAs("d:/path/myfile.csv"); // save to another path

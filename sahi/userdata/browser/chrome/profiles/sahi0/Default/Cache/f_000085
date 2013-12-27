@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="iem7"  lang="en" dir="ltr"><![endif]-->
+<!--[if lte IE 6]><html class="lt-ie9 lt-ie8 lt-ie7"  lang="en" dir="ltr"><![endif]-->
+<!--[if (IE 7)&(!IEMobile)]><html class="lt-ie9 lt-ie8"  lang="en" dir="ltr"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9"  lang="en" dir="ltr"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><!--><html  lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"><!--<![endif]-->
+
+<head><!--SAHI_INJECT_START-->
+<script>/*<![CDATA[*//*---->*/__sahiDebugStr__="";__sahiDebug__=function(s){__sahiDebugStr__+=(s+"\n");};/*--*//*]]>*/</script>
+<script src="/_s_/dyn/SessionState_domainfix/domainfix.js"></script>
+<script src='/_s_/spr/concat.js' id='_sahi_concat'></script>
+<script src='http://sahi.example.com/_s_/dyn/SessionState/state.js'></script>
+<script src='/_s_/spr/language_pack.js' id='langpack'></script>
+<script>/*<![CDATA[*//*---->*/_sahi.createCookie('sahisid', _sahi.sid);_sahi.loadXPathScript()/*--*//*]]>*/</script>
+<script>/*<![CDATA[*//*---->*/eval(_sahi.sendToServer("/_s_/dyn/Player_script/script.js"));/*--*//*]]>*/</script>
+<script src='/_s_/spr/playback.js'></script>
+<!--SAHI_INJECT_END-->
+    <meta charset="utf-8" />
+<link rel="shortcut icon" href="http://testing-ew.weboapps.com/sites/default/files/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+    <title>ewAdmin Dashboard | Everywoman</title>
+          <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="cleartype" content="on">
+
+  <style>@import url("http://testing-ew.weboapps.com/modules/system/system.base.css?mv678g");</style>
+<style>@import url("http://testing-ew.weboapps.com/modules/comment/comment.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/field/theme/field.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/node/node.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/search/search.css?mv678g");
+@import url("http://testing-ew.weboapps.com/modules/user/user.css?mv678g");
+@import url("http://testing-ew.weboapps.com/sites/all/modules/contrib/views/css/views.css?mv678g");</style>
+<style>@import url("http://testing-ew.weboapps.com/sites/all/modules/contrib/ckeditor/ckeditor.css?mv678g");
+@import url("http://testing-ew.weboapps.com/sites/all/modules/contrib/ctools/css/ctools.css?mv678g");</style>
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/zen/zen-internals/css/jquery-ui-1.9.2.custom.min.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/zen/zen-internals/css/bootstrap.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/zen/zen-internals/css/custom.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/sites/all/themes/zen/zen-internals/css/developer.css" media="all" />
+<style>@import url("http://testing-ew.weboapps.com/sites/all/themes/zen/zen-internals/css/demo.css?mv678g");</style>
+  <script src="http://testing-ew.weboapps.com/misc/jquery.js?v=1.4.4"></script>
+<script src="http://testing-ew.weboapps.com/misc/jquery.once.js?v=1.2"></script>
+<script src="http://testing-ew.weboapps.com/misc/drupal.js?mv678g"></script>
+<script src="http://testing-ew.weboapps.com/sites/all/themes/zen/zen-internals/js/custom_user.js?mv678g"></script>
+<script src="/sites/all/themes/zen/zen-internals/js/jquery-1.8.3.min.js"></script>
+<script src="/sites/all/themes/zen/zen-internals/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/misc/jquery.once.js"></script>
+<script src="/misc/jquery.cookie.js"></script>
+<script src="/sites/all/themes/zen/zen-internals/js/jquery.validate.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"zen","theme_token":"5T9DSE9TncyA0QJByb6kmJKIeTiG4dwNmS0gCtU-4ko","js":{"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/themes\/zen\/zen-internals\/js\/custom_user.js":1,"\/sites\/all\/themes\/zen\/zen-internals\/js\/jquery-1.8.3.min.js":1,"\/sites\/all\/themes\/zen\/zen-internals\/js\/jquery-ui-1.9.2.custom.min.js":1,"\/misc\/jquery.once.js":1,"\/misc\/jquery.cookie.js":1,"\/sites\/all\/themes\/zen\/zen-internals\/js\/jquery.validate.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/comment\/comment.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/ckeditor\/ckeditor.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"\/sites\/all\/themes\/zen\/zen-internals\/css\/jquery-ui-1.9.2.custom.min.css":1,"\/sites\/all\/themes\/zen\/zen-internals\/css\/bootstrap.css":1,"\/sites\/all\/themes\/zen\/zen-internals\/css\/custom.css":1,"\/sites\/all\/themes\/zen\/zen-internals\/css\/developer.css":1,"sites\/all\/themes\/zen\/system.menus.css":1,"sites\/all\/themes\/zen\/system.messages.css":1,"sites\/all\/themes\/zen\/system.theme.css":1,"sites\/all\/themes\/zen\/zen-internals\/css\/demo.css":1}}});</script>
+      <!--[if lt IE 9]>
+    <script src="/sites/all/themes/zen/js/html5-respond.js"></script>
+    <![endif]-->
+  </head>
+<body class="html not-front logged-in one-sidebar sidebar-first page-ew-admin page-ew-admin-dashboard section-ew-admin" >
+      <p id="skip-link">
+      <a href="#main-menu" class="element-invisible element-focusable">Jump to navigation</a>
+    </p>
+      
+<div id="page" class="pageOuter">
+    <div class="container pageWrap">
+        <div class="headerOuter clearfix">
+            <!--  <header class="header" id="header" role="banner">-->
+            
+                        <a href="/ew_admin/dashboard" title="Home" rel="home"
+               class="header__logo siteLogo" id="logo"><img src="http://testing-ew.weboapps.com/sites/all/themes/zen/logo.png" alt="Home"
+                                                            class="header__logo-image"/></a>
+            
+                         <div class="topRightLinks pull-right">
+             
+                        <a href="/ew_admin/dashboard" >Welcome EW Admin</a>
+                        <a href="/user/logout/" >logout</a>
+
+
+                                            <!--<nav class="header__secondary-menu" id="secondary-menu" role="navigation">-->
+           
+               
+<!--                -->
+            <!--</nav>-->
+            
+                        </div>
+                        <div class="clearfix"></div>
+            <!--  </header>-->
+        </div>
+
+        <div id="main">
+
+
+            <div class="row pageContent" role="main">
+                <div class="span3 leftSidebar">
+                    
+                                        <aside class="sidebars">
+                          <div class="region region-sidebar-first column sidebar">
+    
+<h3 class="block__title block-title">Quick links</h3>
+
+<div class="grayBg quickLinks">
+<ul>
+<li><a class="menu__link is-active-trail active-trail active" href="/ew_admin/dashboard" title="EW Admin Dashboard">ewAdmin Dashboard</a></li>
+<li><a href="/club/users">Manage ewClub members</a></li>
+<li><a href="/network/users">Manage ewNetwork members</a></li>
+<li><a class="menu__link" href="/node/add">Add content</a></li>
+<li><a class="menu__link" href="/admin/club/register" title="Create ewClub User">Create ewClub User</a></li>
+<li><a class="menu__link" href="/admin/network/register" title="">Create ewNetwork User</a></li>
+</ul>
+</div>
+
+  </div>
+                                            </aside>
+                                    </div>
+                <div class="span9">
+                                                            <h1>ewAdmin Dashboard</h1>
+                                        <nav class="breadcrumb" role="navigation"><h2 class="element-invisible">You are here</h2><ul class="breadcrumb"><li><a href="/ew_admin/dashboard" class="active">Dashboard</a><span class='divider'> › </span></li><li>ewAdmin Dashboard</li></ul></nav><a id="main-content"></a>
+                    
+                                                                                                                            
+
+
+<div class="outerWrap">
+    <div class="pageWrapper">
+
+        <div class="pageContainer">
+
+            <!---------User management-------->
+            <div class="colmListing">
+                <div class="rightContent pull-left">
+                    <h3>User management</h3>
+
+                    <div class="linksOuter">
+                        <div class="row">
+                            <div class="span3 grayBg">
+                                <ul>
+
+                                    <li>
+                                        <a href="/club/users">View ewClub members</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="/network/users">View ewNetwork members</a>
+                                    </li>
+                                    <li><a href="/club/requests">ewClub member Requests</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="span3 grayBg">
+                                <ul>
+                                    <li><a href="/ew_admin/members">View All Members</a></li>
+                                    <li><a href="/company/">Manage Companies</a></li>
+                                    <li><a href="/admin/config/services/mailchimp/campaigns">Manage Newsletters</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="span3 grayBg">
+                                <ul>
+                                    <li><a href="/coupon/list">Manage Coupons</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="leftContent pull-right">
+                    <h3>Member subscription status</h3>
+                    <table class="tableStyle">
+                        <tr>
+                            <th>Overdue</th>
+                            <th>EXPIRES IN 1 MONTH</th>
+                        </tr>
+                        <tr>
+                            <td>Amanda Morris</td>
+                            <td>Jen Davies</td>
+                        </tr>
+                        <tr>
+                            <td>Amanda Morris</td>
+                            <td>Jen Davies</td>
+                        </tr>
+                        <tr>
+                            <td>Amanda Morris</td>
+                            <td>Jen Davies</td>
+                        </tr>
+                    </table>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+
+            <!---------Content management---------->
+            <div class="colmListing">
+                <div class="rightContent pull-left">
+                    <h3>Content management</h3>
+
+                    <div class="linksOuter">
+                        <div class="row">
+                            <div class="span3 grayBg">
+                                <ul>
+                                    <li><a href="/node/add/article">Create New Article</a></li>
+                                    <li><a href="/node/add/upload-files">Create New Files</a></li>
+                                    <li><a href="/node/add/upload-audio">Create New Audio</a></li>
+                                    <li><a href="/node/add/upload-vimeo">Create New Video</a></li>
+                                    <li><a href="/node/add/announcement">Create New News / Announcement</a></li>
+                                    <li><a href="/node/add/testimonial">Create New Testimonial</a></li>
+                                </ul>
+                            </div>
+                            <div class="span3 grayBg">
+                                <ul>
+                                    <li><a href="/article-list">Manage Article</a></li>
+                                    <li><a href="/document-list">Manage Files</a></li>
+                                    <li><a href="/audio-list">Manage Audio</a></li>
+                                    <li><a href="/vimeo-list">Manage Video</a></li>
+                                    <li><a href="/announcement-list">Manage News / Announcement</a></li>
+                                    <li><a href="/testimonial-list">Manage Testimonial</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="leftContent pull-right">
+                    <h3>Member subscription status</h3>
+                    <table class="tableStyle">
+                        <tr>
+                            <th>Overdue</th>
+                            <th>EXPIRES IN 1 MONTH</th>
+                        </tr>
+                        <tr>
+                            <td>Amanda Morris</td>
+                            <td>Jen Davies</td>
+                        </tr>
+                        <tr>
+                            <td>Amanda Morris</td>
+                            <td>Jen Davies</td>
+                        </tr>
+                        <tr>
+                            <td>Amanda Morris</td>
+                            <td>Jen Davies</td>
+                        </tr>
+                    </table>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="colmListing">
+                <!--<div class="rightContent pull-left">
+                    <h3>Member account details</h3>
+
+                    <div class="formView">
+                        <div class="colm3 pull-left">
+                            <div class="fieldOuter">
+                                <label class="label">Name</label>
+
+                                <div class="formField">Jenna Robins</div>
+                            </div>
+                            <div class="fieldOuter">
+                                <label class="label">Email</label>
+
+                                <div class="formField">jenna@live.com</div>
+                            </div>
+                            <div class="fieldOuter">
+                                <label class="label">Member Since</label>
+
+                                <div class="formField">5/11/2011</div>
+                            </div>
+                            <div class="fieldOuter">
+                                <label class="label">Access Status</label>
+
+                                <div class="formField">Enabled</div>
+                            </div>
+                        </div>
+                        <div class="colm4 pull-right">
+                            <div class="fieldOuter">
+                                <label class="label">Member Type</label>
+
+                                <div class="formField">Jenna Robins</div>
+                            </div>
+                            <div class="fieldOuter"></div>
+                            <div class="fieldOuter">
+                                <label class="label">Subscription Status /
+                                    Expiry Date</label>
+
+                                <div class="formField">Active, 5/11/2011</div>
+                            </div>
+                            <div class="fieldOuter">
+                                <label class="label">Referred by</label>
+
+                                <div class="formField">343434343</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--<div class="leftContent pull-right">
+                    <h3>Quick links</h3>
+
+                    <div class="linksOuter">
+                        <ul>
+                            <li><a href="/coming-soon">Manage Home Page</a></li>
+                            <li><a href="/coming-soon">Create New Content</a></li>
+                            <li><a href="/coming-soon">View All Users</a></li>
+                            <li><a href="/coming-soon">Manage ewClub Page</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                <div class="clearfix"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!--Code need to be refactor-->
+                                    </div>
+            </div>
+
+            <div id="navigation">
+
+                
+                
+            </div>
+
+        </div>
+
+                <div class="clearfix"></div>
+    </div>
+
+</div>  <!--Close container class-->
+  <div class="region region-bottom">
+    
+
+<div class="footerOuter">
+<div class="container">
+<p>© EveryWoman 2013</p>
+</div>
+</div>
+
+  </div>
+  </body>
+</html>

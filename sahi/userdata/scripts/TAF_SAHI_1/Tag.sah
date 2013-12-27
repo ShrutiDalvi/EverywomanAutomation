@@ -1,0 +1,28 @@
+function funcVerifyCreateTags()
+{
+	var $tagcount;
+	var $tagsfirst;
+	var $tagssecond
+
+		$tagcount=$strParam1;
+		_log("Total number of tags to create :: " + $tagcount,"custom2");
+		$tagsfirst = _count ("_div", "/sample/");
+		_log("The intially total numbers of tags are::"+ $tagsfirst,"custom1");
+		_wait(1000);
+        _click(_link("create tag"));
+	    _wait(2000);
+	    _setValue(_textbox(0,_near(_label("* Please Enter no. of tags"))),$tagcount);
+	    _click(_submit("submit"));
+		_wait(1000);
+		$tagssecond=_count("_div","/sample/");
+		_log("After creating"+$tagcount+ "tags" + "Total tags exists are ::"+ $tagssecond,"custom3");
+	if($tagssecond==$tagsfirst+$tagcount)
+	{
+	  _log("Tags are created successfully now total tags present are :: " + $tagssecond,"success");
+	}
+	else
+	{
+	  _log("Tags are not created successfully now total tags present are :: " + $tagssecond,"failure");
+    }
+
+}
